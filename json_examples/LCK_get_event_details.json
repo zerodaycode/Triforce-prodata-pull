@@ -1,0 +1,139 @@
+{
+    "event": {
+        "id": "107418445248214098",
+        "type": "match",
+        "tournament": {
+            "id": "107418445247362001"
+        },
+        "league": {
+            "id": "98767991310872058",
+            "slug": "lck",
+            "image": "http://static.lolesports.com/leagues/lck-color-on-black.png",
+            "name": "LCK"
+        },
+        "match": {
+            "strategy": {
+                "count": 3
+            },
+            "teams": [
+                {
+                    "id": "100205573496804586",
+                    "name": "Hanwha Life Esports",
+                    "code": "HLE",
+                    "image": "http://static.lolesports.com/teams/1631819564399_hle-2021-worlds.png",
+                    "result": {
+                        "gameWins": 0
+                    }
+                },
+                {
+                    "id": "99566404581868574",
+                    "name": "Kwangdong Freecs",
+                    "code": "KDF",
+                    "image": "http://static.lolesports.com/teams/1641186009897_KDF_KR_logo.png",
+                    "result": {
+                        "gameWins": 0
+                    }
+                }
+            ],
+            "games": [
+                {
+                    "number": 1,
+                    "id": "107418445248214099",
+                    "state": "inProgress",
+                    "teams": [
+                        {
+                            "id": "100205573496804586",
+                            "side": "blue"
+                        },
+                        {
+                            "id": "99566404581868574",
+                            "side": "red"
+                        }
+                    ],
+                    "vods": []
+                },
+                {
+                    "number": 2,
+                    "id": "107418445248214100",
+                    "state": "unstarted",
+                    "teams": [
+                        {
+                            "id": "100205573496804586",
+                            "side": "blue"
+                        },
+                        {
+                            "id": "99566404581868574",
+                            "side": "red"
+                        }
+                    ],
+                    "vods": []
+                },
+                {
+                    "number": 3,
+                    "id": "107418445248214101",
+                    "state": "unstarted",
+                    "teams": [
+                        {
+                            "id": "99566404581868574",
+                            "side": "blue"
+                        },
+                        {
+                            "id": "100205573496804586",
+                            "side": "red"
+                        }
+                    ],
+                    "vods": []
+                }
+            ]
+        },
+        "streams": [
+            {
+                "parameter": "pg_esports_lol",
+                "locale": "it-IT",
+                "provider": "twitch",
+                "countries": [],
+                "offset": -50000
+            },
+            {
+                "parameter": "summonersinnlive",
+                "locale": "de-DE",
+                "provider": "twitch",
+                "countries": [
+                    "DE"
+                ],
+                "offset": -50000
+            },
+            {
+                "parameter": "lck",
+                "locale": "en-US",
+                "provider": "twitch",
+                "countries": [],
+                "offset": -50000
+            },
+            {
+                "parameter": "lck_korea",
+                "locale": "ko-KR",
+                "provider": "twitch",
+                "countries": [],
+                "offset": -50000
+            },
+            {
+                "parameter": "aflol",
+                "locale": "ko-KR",
+                "provider": "afreecatv",
+                "countries": [],
+                "offset": 0
+            },
+            {
+                "parameter": "otplol_",
+                "locale": "fr-FR",
+                "provider": "twitch",
+                "countries": [
+                    "FR",
+                    "CA"
+                ],
+                "offset": -50000
+            }
+        ]
+    }
+}

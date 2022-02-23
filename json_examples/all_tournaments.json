@@ -1,0 +1,1203 @@
+[
+
+    {
+        "tournaments": [
+            {
+                "id": "102804705856335355",
+                "slug": "eu_masters_summer_2019",
+                "startDate": "2019-09-09",
+                "endDate": "2019-09-29"
+            },
+            {
+                "id": "103936903203607374",
+                "slug": "european-masters-spring-2020",
+                "startDate": "2020-04-05",
+                "endDate": "2020-05-11"
+            },
+            {
+                "id": "104727755399361381",
+                "slug": "eu_masters_summer_2020",
+                "startDate": "2020-08-17",
+                "endDate": "2020-09-20"
+            },
+            {
+                "id": "105945560578760612",
+                "slug": "european_masters_spring_2021_play_ins",
+                "startDate": "2021-03-29",
+                "endDate": "2021-04-01"
+            },
+            {
+                "id": "105990084003609117",
+                "slug": "european_masters_spring_2021_main_event",
+                "startDate": "2021-04-14",
+                "endDate": "2021-05-02"
+            },
+            {
+                "id": "106744065768553123",
+                "slug": "european_masters_summer_2021_play_ins",
+                "startDate": "2021-08-12",
+                "endDate": "2021-08-19"
+            },
+            {
+                "id": "106748850929174796",
+                "slug": "european_masters_summer_2021_main_event",
+                "startDate": "2021-08-29",
+                "endDate": "2021-09-20"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "103556720421148036",
+                "slug": "tal_2020_split1",
+                "startDate": "2020-02-03",
+                "endDate": "2020-04-26"
+            },
+            {
+                "id": "104253013242629769",
+                "slug": "tal-summer-2020",
+                "startDate": "2020-06-08",
+                "endDate": "2020-08-10"
+            },
+            {
+                "id": "105562790517029462",
+                "slug": "turkey_academy_league_2021",
+                "startDate": "2021-01-21",
+                "endDate": "2021-03-29"
+            },
+            {
+                "id": "106342376604772906",
+                "slug": "tal_2021_summer",
+                "startDate": "2021-06-10",
+                "endDate": "2021-09-16"
+            },
+            {
+                "id": "107566682545712550",
+                "slug": "tal_winter_2022",
+                "startDate": "2022-01-19",
+                "endDate": "2022-03-26"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "101383792604229595",
+                "slug": "lla_2019_apertura",
+                "startDate": "2019-01-19",
+                "endDate": "2019-04-20"
+            },
+            {
+                "id": "102147203732523011",
+                "slug": "lla_2019_clausura",
+                "startDate": "2019-06-07",
+                "endDate": "2019-09-30"
+            },
+            {
+                "id": "103540419468532110",
+                "slug": "lla_2020_split1",
+                "startDate": "2020-02-15",
+                "endDate": "2020-04-25"
+            },
+            {
+                "id": "104237136838348356",
+                "slug": "lla-closing-2020",
+                "startDate": "2020-06-20",
+                "endDate": "2020-09-06"
+            },
+            {
+                "id": "105551618304300204",
+                "slug": "lla_2021_split1",
+                "startDate": "2021-01-30",
+                "endDate": "2021-04-10"
+            },
+            {
+                "id": "106269744788213905",
+                "slug": "lla_2021_closing",
+                "startDate": "2021-06-19",
+                "endDate": "2021-08-30"
+            },
+            {
+                "id": "106845973122821257",
+                "slug": "lla_2022_opening_promotion",
+                "startDate": "2021-08-31",
+                "endDate": "2021-09-06"
+            },
+            {
+                "id": "107530554766055254",
+                "slug": "lla_opening_2022",
+                "startDate": "2022-01-28",
+                "endDate": "2022-04-17"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "104372946599464241",
+                "slug": "pcs-summer-2020",
+                "startDate": "2020-06-20",
+                "endDate": "2020-09-07"
+            },
+            {
+                "id": "106269875362449980",
+                "slug": "pcs_2021_summer",
+                "startDate": "2021-07-03",
+                "endDate": "2021-08-30"
+            },
+            {
+                "id": "107693721179065689",
+                "slug": "pcs_2022_spring",
+                "startDate": "2022-02-11",
+                "endDate": "2022-03-31"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105562529622379161",
+                "slug": "superliga_2021_spring",
+                "startDate": "2021-01-18",
+                "endDate": "2021-03-26"
+            },
+            {
+                "id": "106312505037543791",
+                "slug": "superliga_2021_summer",
+                "startDate": "2021-05-28",
+                "endDate": "2021-08-20"
+            },
+            {
+                "id": "107468241207873310",
+                "slug": "superliga_2022_spring",
+                "startDate": "2022-01-09",
+                "endDate": "2022-05-01"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105562656842928291",
+                "slug": "ultraliga_2021_spring",
+                "startDate": "2021-01-19",
+                "endDate": "2021-03-25"
+            },
+            {
+                "id": "106301901327374691",
+                "slug": "ultraliga_2021_summer",
+                "startDate": "2021-05-26",
+                "endDate": "2021-08-31"
+            },
+            {
+                "id": "107416436272657995",
+                "slug": "ultraliga_2022_spring",
+                "startDate": "2022-01-01",
+                "endDate": "2022-05-01"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105562556573338448",
+                "slug": "prime_league_2021_spring",
+                "startDate": "2021-01-19",
+                "endDate": "2021-03-22"
+            },
+            {
+                "id": "106305935741165084",
+                "slug": "primeleague_2021_summer",
+                "startDate": "2021-05-10",
+                "endDate": "2021-08-20"
+            },
+            {
+                "id": "107417741193036913",
+                "slug": "prime_2022_spring",
+                "startDate": "2022-01-01",
+                "endDate": "2022-05-01"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105539775517396799",
+                "slug": "pg_nationals_2021_split1",
+                "startDate": "2021-01-13",
+                "endDate": "2021-03-14"
+            },
+            {
+                "id": "106319725617882570",
+                "slug": "pg_nationals_2021_split2",
+                "startDate": "2021-05-28",
+                "endDate": "2021-08-20"
+            },
+            {
+                "id": "107457033672415830",
+                "slug": "pg_spring",
+                "startDate": "2022-01-17",
+                "endDate": "2022-05-01"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105562790070504659",
+                "slug": "nlc_2021_split1",
+                "startDate": "2021-01-19",
+                "endDate": "2021-03-24"
+            },
+            {
+                "id": "106340473013395166",
+                "slug": "nlc_summer_split_2021",
+                "startDate": "2021-06-02",
+                "endDate": "2021-08-10"
+            },
+            {
+                "id": "107417432877679361",
+                "slug": "nlc_2022_spring",
+                "startDate": "2022-01-01",
+                "endDate": "2022-05-15"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105596427125578664",
+                "slug": "liga_portuguesa_2021_spring",
+                "startDate": "2021-01-25",
+                "endDate": "2021-03-22"
+            },
+            {
+                "id": "106311748110571694",
+                "slug": "liga_portuguesa_2021_summer",
+                "startDate": "2021-05-28",
+                "endDate": "2021-08-31"
+            },
+            {
+                "id": "107417530552861626",
+                "slug": "lplol_spring",
+                "startDate": "2022-01-17",
+                "endDate": "2022-03-21"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105568157420311272",
+                "slug": "lfl_2021_spring",
+                "startDate": "2021-01-19",
+                "endDate": "2021-03-25"
+            },
+            {
+                "id": "106313258182079617",
+                "slug": "lfl_2021_summer",
+                "startDate": "2021-05-28",
+                "endDate": "2021-08-12"
+            },
+            {
+                "id": "107468370558963709",
+                "slug": "lfl_2022_spring",
+                "startDate": "2022-01-09",
+                "endDate": "2022-05-01"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105596516630284353",
+                "slug": "hitpoint_masters_2021_spring",
+                "startDate": "2021-01-24",
+                "endDate": "2021-03-22"
+            },
+            {
+                "id": "106419362022708584",
+                "slug": "hitpoint_masters_2021_summer",
+                "startDate": "2021-06-16",
+                "endDate": "2021-09-30"
+            },
+            {
+                "id": "107575089348919003",
+                "slug": "hitpoint_masters_2022_spring",
+                "startDate": "2022-01-17",
+                "endDate": "2022-03-21"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105522904800920947",
+                "slug": "greek_legends_2021_split1",
+                "startDate": "2021-01-11",
+                "endDate": "2021-03-22"
+            },
+            {
+                "id": "106295147953460518",
+                "slug": "greek_legends_2021_split2",
+                "startDate": "2021-05-25",
+                "endDate": "2021-08-31"
+            },
+            {
+                "id": "107575345394138670",
+                "slug": "greek_legends_2022_spring",
+                "startDate": "2022-01-17",
+                "endDate": "2022-03-13"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105596416963238709",
+                "slug": "ebl_2021_spring",
+                "startDate": "2021-01-25",
+                "endDate": "2021-03-28"
+            },
+            {
+                "id": "106385973090763431",
+                "slug": "ebl_2021_split2",
+                "startDate": "2021-06-10",
+                "endDate": "2021-09-30"
+            },
+            {
+                "id": "107468404707086558",
+                "slug": "ebl_spring_2022",
+                "startDate": "2022-01-16",
+                "endDate": "2022-04-01"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105562692792011783",
+                "slug": "cblol_academy_2021",
+                "startDate": "2021-01-19",
+                "endDate": "2021-04-18"
+            },
+            {
+                "id": "106269705187845648",
+                "slug": "cblol_academy_2021_split2",
+                "startDate": "2021-06-05",
+                "endDate": "2021-08-31"
+            },
+            {
+                "id": "107565607659994755",
+                "slug": "cblol_academy_2022",
+                "startDate": "2022-01-24",
+                "endDate": "2022-04-18"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105747961298296953",
+                "slug": "lco_2021_split1",
+                "startDate": "2021-02-23",
+                "endDate": "2021-04-11"
+            },
+            {
+                "id": "106273204408903419",
+                "slug": "lco_2021_split2",
+                "startDate": "2021-06-15",
+                "endDate": "2021-08-29"
+            },
+            {
+                "id": "107439320897210747",
+                "slug": "lco_spring_2022",
+                "startDate": "2022-01-23",
+                "endDate": "2022-04-29"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "106828136191077157",
+                "slug": "ljl_2021_academy",
+                "startDate": "2021-08-30",
+                "endDate": "2021-09-09"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "107256578722475733",
+                "slug": "vcs_2021_winter",
+                "startDate": "2021-11-14",
+                "endDate": "2021-12-30"
+            },
+            {
+                "id": "107611014996486035",
+                "slug": "vcs_spring_2022",
+                "startDate": "2022-02-10",
+                "endDate": "2022-05-02"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "107563481236862420",
+                "slug": "eslol_spring",
+                "startDate": "2022-01-16",
+                "endDate": "2022-05-01"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "107593829776150606",
+                "slug": "honor_division_opening_2022",
+                "startDate": "2022-01-18",
+                "endDate": "2022-04-03"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "107651358740776812",
+                "slug": "elements_league_opening_2022",
+                "startDate": "2022-01-24",
+                "endDate": "2022-03-29"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "107682708465517027",
+                "slug": "discover_volcano_league_opening_2022",
+                "startDate": "2022-01-25",
+                "endDate": "2022-04-16"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "107651193184847580",
+                "slug": "claro_gaming_stars_league_opening_2022",
+                "startDate": "2022-01-27",
+                "endDate": "2022-04-02"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "107728324355999617",
+                "slug": "master_flow_league_opening_2022",
+                "startDate": "2022-01-26",
+                "endDate": "2022-04-16"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "107677841285321565",
+                "slug": "honor_league_opening_2022",
+                "startDate": "2022-01-24",
+                "endDate": "2022-04-16"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "107639438008157483",
+                "slug": "golden_league_spring_2022",
+                "startDate": "2022-01-25",
+                "endDate": "2022-04-10"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "100783238182986407",
+                "slug": "world_championship_2018",
+                "startDate": "2018-10-01",
+                "endDate": "2018-11-03"
+            },
+            {
+                "id": "102804906674705057",
+                "slug": "world_championship_2019",
+                "startDate": "2019-10-02",
+                "endDate": "2019-11-10"
+            },
+            {
+                "id": "104841804583318464",
+                "slug": "worlds_2020",
+                "startDate": "2020-09-25",
+                "endDate": "2020-11-01"
+            },
+            {
+                "id": "106926282333089592",
+                "slug": "worlds_2021",
+                "startDate": "2021-10-03",
+                "endDate": "2021-11-08"
+            },
+            {
+                "id": "107125010264727827",
+                "slug": "worlds2011",
+                "startDate": "2011-06-18",
+                "endDate": "2011-06-20"
+            },
+            {
+                "id": "107385933322514307",
+                "slug": "worlds_2014",
+                "startDate": "2014-09-18",
+                "endDate": "2014-10-20"
+            },
+            {
+                "id": "98767991971246908",
+                "slug": "world_championship_2017",
+                "startDate": "2017-09-22",
+                "endDate": "2017-11-04"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "101157821672845982",
+                "slug": "all_star_2018",
+                "startDate": "2018-12-06",
+                "endDate": "2018-12-08"
+            },
+            {
+                "id": "103240747053720909",
+                "slug": "all_star_2019",
+                "startDate": "2019-12-05",
+                "endDate": "2019-12-08"
+            },
+            {
+                "id": "105386292089445027",
+                "slug": "ase_2020",
+                "startDate": "2020-12-18",
+                "endDate": "2020-12-20"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "100205574960535474",
+                "slug": "na_2018_summer",
+                "startDate": "2018-06-16",
+                "endDate": "2018-09-16"
+            },
+            {
+                "id": "101383794038323910",
+                "slug": "lcs_2019_spring",
+                "startDate": "2019-01-26",
+                "endDate": "2019-04-14"
+            },
+            {
+                "id": "102147201296669914",
+                "slug": "lcs_2019_summer",
+                "startDate": "2019-06-01",
+                "endDate": "2019-09-20"
+            },
+            {
+                "id": "103462439438682788",
+                "slug": "lcs_2020_split1",
+                "startDate": "2020-01-24",
+                "endDate": "2020-04-20"
+            },
+            {
+                "id": "104174992692075107",
+                "slug": "lcs_summer_2020",
+                "startDate": "2020-06-11",
+                "endDate": "2020-09-14"
+            },
+            {
+                "id": "105522217230238828",
+                "slug": "lcs_2021_lockin",
+                "startDate": "2021-01-15",
+                "endDate": "2021-01-31"
+            },
+            {
+                "id": "105658534671026792",
+                "slug": "lcs_2021",
+                "startDate": "2021-06-04",
+                "endDate": "2021-08-30"
+            },
+            {
+                "id": "105788932118361426",
+                "slug": "mss_2021",
+                "startDate": "2021-03-20",
+                "endDate": "2021-04-12"
+            },
+            {
+                "id": "106972812538132507",
+                "slug": "lcsspring2016",
+                "startDate": "2016-01-16",
+                "endDate": "2016-04-18"
+            },
+            {
+                "id": "107045060626269295",
+                "slug": "lcsspring2015",
+                "startDate": "2015-01-01",
+                "endDate": "2015-04-30"
+            },
+            {
+                "id": "107458335260330212",
+                "slug": "lcs_2022_lock_in",
+                "startDate": "2022-01-14",
+                "endDate": "2022-01-31"
+            },
+            {
+                "id": "107458367237283414",
+                "slug": "lcs_spring_2022",
+                "startDate": "2022-02-04",
+                "endDate": "2022-04-25"
+            },
+            {
+                "id": "107620592294752774",
+                "slug": "lcsspring2013",
+                "startDate": "2013-02-06",
+                "endDate": "2013-04-29"
+            },
+            {
+                "id": "107656643139734824",
+                "slug": "lcssummer2013",
+                "startDate": "2013-06-12",
+                "endDate": "2013-08-16"
+            },
+            {
+                "id": "107697401518332544",
+                "slug": "lcsspring2014",
+                "startDate": "2014-01-16",
+                "endDate": "2014-08-30"
+            },
+            {
+                "id": "107719921883398026",
+                "slug": "lcssummer2014",
+                "startDate": "2014-05-23",
+                "endDate": "2014-09-02"
+            },
+            {
+                "id": "107741488941545959",
+                "slug": "lcssummer2015",
+                "startDate": "2015-05-01",
+                "endDate": "2015-08-24"
+            },
+            {
+                "id": "107744640257699883",
+                "slug": "lcssummer2016",
+                "startDate": "2016-06-02",
+                "endDate": "2016-08-01"
+            },
+            {
+                "id": "107784927885285215",
+                "slug": "lcsspring2017",
+                "startDate": "2017-01-19",
+                "endDate": "2017-04-24"
+            },
+            {
+                "id": "98926509909121648",
+                "slug": "na_2017_summer",
+                "startDate": "2017-06-02",
+                "endDate": "2017-09-11"
+            },
+            {
+                "id": "99294154009972000",
+                "slug": "na_2018_spring",
+                "startDate": "2018-01-20",
+                "endDate": "2018-04-08"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "100205575629449176",
+                "slug": "eu_2018_summer",
+                "startDate": "2018-06-15",
+                "endDate": "2018-09-16"
+            },
+            {
+                "id": "101383793622305540",
+                "slug": "lec_2019_spring",
+                "startDate": "2019-01-18",
+                "endDate": "2019-04-14"
+            },
+            {
+                "id": "102147201778412187",
+                "slug": "lec_2019_summer",
+                "startDate": "2019-06-07",
+                "endDate": "2019-09-20"
+            },
+            {
+                "id": "103462459318635408",
+                "slug": "lec_2020_split1",
+                "startDate": "2020-01-24",
+                "endDate": "2020-04-27"
+            },
+            {
+                "id": "104169295253189561",
+                "slug": "lec_summer_2020",
+                "startDate": "2020-06-11",
+                "endDate": "2020-09-07"
+            },
+            {
+                "id": "105522958532258735",
+                "slug": "lec_2021_split1",
+                "startDate": "2021-01-04",
+                "endDate": "2021-04-11"
+            },
+            {
+                "id": "106269680921022418",
+                "slug": "lec_2021_summer",
+                "startDate": "2021-06-11",
+                "endDate": "2021-08-30"
+            },
+            {
+                "id": "107417059262120466",
+                "slug": "lec_2022_spring",
+                "startDate": "2022-01-01",
+                "endDate": "2022-05-15"
+            },
+            {
+                "id": "99322214712278618",
+                "slug": "eu_2018_spring",
+                "startDate": "2018-01-19",
+                "endDate": "2018-04-08"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "100205573522838487",
+                "slug": "lck_2018_summer",
+                "startDate": "2018-06-12",
+                "endDate": "2018-09-23"
+            },
+            {
+                "id": "101388913417992988",
+                "slug": "lck_2019_spring",
+                "startDate": "2019-01-16",
+                "endDate": "2019-04-21"
+            },
+            {
+                "id": "102181142473043418",
+                "slug": "lck_2019_summer",
+                "startDate": "2019-06-05",
+                "endDate": "2019-09-11"
+            },
+            {
+                "id": "103540363364808496",
+                "slug": "lck_2020_split1",
+                "startDate": "2020-02-05",
+                "endDate": "2020-04-26"
+            },
+            {
+                "id": "104174613295388764",
+                "slug": "lck_summer_2020",
+                "startDate": "2020-06-16",
+                "endDate": "2020-09-06"
+            },
+            {
+                "id": "105522984810490982",
+                "slug": "lck_2021_split1",
+                "startDate": "2021-01-13",
+                "endDate": "2021-04-03"
+            },
+            {
+                "id": "106269654659501670",
+                "slug": "lck_summer_2021",
+                "startDate": "2021-06-09",
+                "endDate": "2021-09-03"
+            },
+            {
+                "id": "106840590962292347",
+                "slug": "lck_regional_finals_2021",
+                "startDate": "2021-08-31",
+                "endDate": "2021-09-03"
+            },
+            {
+                "id": "107418445247362001",
+                "slug": "lck_spring_2022",
+                "startDate": "2022-01-11",
+                "endDate": "2022-04-04"
+            },
+            {
+                "id": "99566404601075616",
+                "slug": "lck_2018_spring",
+                "startDate": "2018-01-16",
+                "endDate": "2018-04-23"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "100205574095502272",
+                "slug": "lpl_2018_summer",
+                "startDate": "2018-06-11",
+                "endDate": "2018-09-23"
+            },
+            {
+                "id": "101388912982111577",
+                "slug": "lpl_2019_spring",
+                "startDate": "2019-01-14",
+                "endDate": "2019-04-21"
+            },
+            {
+                "id": "102181141746404105",
+                "slug": "lpl_2019_summer",
+                "startDate": "2019-06-01",
+                "endDate": "2019-09-08"
+            },
+            {
+                "id": "103462420723438502",
+                "slug": "lpl_2020_split1",
+                "startDate": "2020-01-13",
+                "endDate": "2020-04-26"
+            },
+            {
+                "id": "104282610668475466",
+                "slug": "lpl_summer_2020",
+                "startDate": "2020-06-05",
+                "endDate": "2020-08-10"
+            },
+            {
+                "id": "105516880821527383",
+                "slug": "lpl_2021_split1",
+                "startDate": "2021-01-09",
+                "endDate": "2021-04-18"
+            },
+            {
+                "id": "106269484328946755",
+                "slug": "lpl_2021_summer",
+                "startDate": "2021-06-05",
+                "endDate": "2021-09-06"
+            },
+            {
+                "id": "106860829994219982",
+                "slug": "lpl_regional_finals_2021",
+                "startDate": "2021-08-29",
+                "endDate": "2021-09-06"
+            },
+            {
+                "id": "107417779630700437",
+                "slug": "lpl_spring_2022",
+                "startDate": "2022-01-10",
+                "endDate": "2022-05-01"
+            },
+            {
+                "id": "99566404873639114",
+                "slug": "lpl_2018_spring",
+                "startDate": "2018-01-15",
+                "endDate": "2018-04-29"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "100205573044644938",
+                "slug": "msi_2018",
+                "startDate": "2018-04-27",
+                "endDate": "2018-05-20"
+            },
+            {
+                "id": "101978171914014519",
+                "slug": "msi_2019",
+                "startDate": "2019-05-01",
+                "endDate": "2019-05-19"
+            },
+            {
+                "id": "105873410870441926",
+                "slug": "msi_2021",
+                "startDate": "2021-05-06",
+                "endDate": "2021-05-23"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "100205576338370838",
+                "slug": "cblol_2018_split_2",
+                "startDate": "2018-06-09",
+                "endDate": "2018-09-08"
+            },
+            {
+                "id": "101383793244817602",
+                "slug": "cblol_2019_split1",
+                "startDate": "2019-01-12",
+                "endDate": "2019-04-13"
+            },
+            {
+                "id": "102147202571739078",
+                "slug": "cblol_2019_summer",
+                "startDate": "2019-06-01",
+                "endDate": "2019-09-07"
+            },
+            {
+                "id": "103478354329449186",
+                "slug": "cblol_2020_split1",
+                "startDate": "2020-01-25",
+                "endDate": "2020-05-03"
+            },
+            {
+                "id": "104202471497759152",
+                "slug": "cblol_split2_2020",
+                "startDate": "2020-06-06",
+                "endDate": "2020-09-13"
+            },
+            {
+                "id": "105539760572983266",
+                "slug": "cblol_2021_split1",
+                "startDate": "2021-01-16",
+                "endDate": "2021-04-18"
+            },
+            {
+                "id": "106297375705058741",
+                "slug": "cblol_2021_split2",
+                "startDate": "2021-06-05",
+                "endDate": "2021-09-05"
+            },
+            {
+                "id": "107405837336179496",
+                "slug": "cblol_2022_split1",
+                "startDate": "2022-01-22",
+                "endDate": "2022-04-23"
+            },
+            {
+                "id": "99566408235138456",
+                "slug": "cblol_2018_split_1",
+                "startDate": "2018-01-20",
+                "endDate": "2018-04-30"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105562431502825774",
+                "slug": "lck_challengers_league_2021",
+                "startDate": "2021-01-18",
+                "endDate": "2021-04-09"
+            },
+            {
+                "id": "106308351107145908",
+                "slug": "lck_cl_2021_summer",
+                "startDate": "2021-06-07",
+                "endDate": "2021-08-28"
+            },
+            {
+                "id": "107439257586040014",
+                "slug": "lck_challengers_spring_2022",
+                "startDate": "2022-01-09",
+                "endDate": "2022-04-02"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "100205576975941700",
+                "slug": "tr_2018_summer",
+                "startDate": "2018-06-15",
+                "endDate": "2018-09-22"
+            },
+            {
+                "id": "101422616581636308",
+                "slug": "tr_2019_winter",
+                "startDate": "2019-01-19",
+                "endDate": "2019-05-01"
+            },
+            {
+                "id": "102235771755352569",
+                "slug": "tr_2019_summer",
+                "startDate": "2019-06-08",
+                "endDate": "2019-09-07"
+            },
+            {
+                "id": "103495775740097550",
+                "slug": "tr_2020_split1",
+                "startDate": "2020-02-01",
+                "endDate": "2020-04-25"
+            },
+            {
+                "id": "104248884617992857",
+                "slug": "tcl_summer_2020",
+                "startDate": "2020-06-06",
+                "endDate": "2020-09-06"
+            },
+            {
+                "id": "105562822074055437",
+                "slug": "turkiye_sampiyonluk_ligi_2021",
+                "startDate": "2021-01-23",
+                "endDate": "2021-04-18"
+            },
+            {
+                "id": "106269459003590888",
+                "slug": "tcl_2021_summer",
+                "startDate": "2021-06-05",
+                "endDate": "2021-09-05"
+            },
+            {
+                "id": "107566408953200568",
+                "slug": "tcl_winter_2022",
+                "startDate": "2022-01-20",
+                "endDate": "2022-04-11"
+            },
+            {
+                "id": "99566406080517611",
+                "slug": "tr_2018_winter",
+                "startDate": "2018-01-20",
+                "endDate": "2018-04-30"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "101428372650853326",
+                "slug": "ljl_2019_spring",
+                "startDate": "2019-01-18",
+                "endDate": "2019-04-13"
+            },
+            {
+                "id": "102147204088046087",
+                "slug": "ljl_2019_summer",
+                "startDate": "2019-06-14",
+                "endDate": "2019-09-22"
+            },
+            {
+                "id": "103540397353089204",
+                "slug": "ljl_2020_split1",
+                "startDate": "2020-02-08",
+                "endDate": "2020-04-19"
+            },
+            {
+                "id": "104169308670244006",
+                "slug": "ljl_summer_2020",
+                "startDate": "2020-06-12",
+                "endDate": "2020-08-24"
+            },
+            {
+                "id": "105562833911566614",
+                "slug": "ljl_2021_spring",
+                "startDate": "2021-01-23",
+                "endDate": "2021-04-12"
+            },
+            {
+                "id": "106269757536651711",
+                "slug": "ljl_2021_summer",
+                "startDate": "2021-06-19",
+                "endDate": "2021-09-06"
+            },
+            {
+                "id": "107455808271204256",
+                "slug": "ljl_spring_2022",
+                "startDate": "2022-02-09",
+                "endDate": "2022-04-11"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "105663539171928276",
+                "slug": "lcl_2021_spring",
+                "startDate": "2021-02-13",
+                "endDate": "2021-04-17"
+            },
+            {
+                "id": "106269769724268826",
+                "slug": "lcl_2021_summer",
+                "startDate": "2021-06-26",
+                "endDate": "2021-09-05"
+            },
+            {
+                "id": "107417471555810057",
+                "slug": "lcl_spring_2022",
+                "startDate": "2022-02-11",
+                "endDate": "2022-04-16"
+            }
+        ]
+    },
+    {
+        "tournaments": [
+            {
+                "id": "101423170967956290",
+                "slug": "na_academy_2019_spring",
+                "startDate": "2019-01-17",
+                "endDate": "2019-04-06"
+            },
+            {
+                "id": "102147202101461091",
+                "slug": "lcs_academy_2019_summer",
+                "startDate": "2019-05-30",
+                "endDate": "2019-08-23"
+            },
+            {
+                "id": "103462454280724883",
+                "slug": "na_academy_2020_split1",
+                "startDate": "2020-01-24",
+                "endDate": "2020-04-20"
+            },
+            {
+                "id": "104174601803063383",
+                "slug": "lcs-academy-summer-2020",
+                "startDate": "2020-06-11",
+                "endDate": "2020-08-29"
+            },
+            {
+                "id": "105562772719614457",
+                "slug": "lcs_academy_2021",
+                "startDate": "2021-01-20",
+                "endDate": "2021-02-19"
+            },
+            {
+                "id": "105913088922791426",
+                "slug": "proving_grounds_2021",
+                "startDate": "2021-03-30",
+                "endDate": "2021-04-25"
+            },
+            {
+                "id": "106273298442359221",
+                "slug": "lcs_academy_2021_summer",
+                "startDate": "2021-06-02",
+                "endDate": "2021-08-22"
+            },
+            {
+                "id": "106858019190269494",
+                "slug": "proving_grounds_2021_summer",
+                "startDate": "2021-09-02",
+                "endDate": "2021-09-20"
+            },
+            {
+                "id": "107418086627198298",
+                "slug": "lcs_academy_2022_spring",
+                "startDate": "2022-01-19",
+                "endDate": "2022-05-31"
+            },
+            {
+                "id": "99566405144636574",
+                "slug": "na_academy_2018_spring",
+                "startDate": "2018-01-18",
+                "endDate": "2018-03-30"
+            }
+        ]
+    }
+]
