@@ -19,6 +19,7 @@ class LoLEsportApi:
 
     def set_default_language(self, language_code):
         # TODO implement language code error
+        # TODO implement on class methods
         """Set a new default language
 
              Parameters
@@ -709,7 +710,7 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.json()}")
             check_correct_response(response, live_stats_data=True)
-            return json.loads(response.text)['data']
+            return json.loads(response.text)
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
             log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
 
@@ -747,6 +748,9 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.json()}")
             check_correct_response(response, live_stats_data=True)
-            return json.loads(response.text)['data']
+            return json.loads(response.text)
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
             log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+
+
+
