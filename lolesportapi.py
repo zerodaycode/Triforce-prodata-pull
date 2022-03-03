@@ -41,7 +41,8 @@ class LoLEsportApi:
              -------
             dict
                 If the status code of the request is 200, the dictionary will have the following
-                structure (keep in mind than multiple dictionary with the same structure are expected on the array level)::
+                structure (keep in mind than multiple dictionary with the same structure
+                are expected on the array level)::
 
                     {
                         'leagues': [
@@ -130,8 +131,8 @@ class LoLEsportApi:
 
                     }
 
-                If the status code of the request is 200 and the league ID doesn't exist, the value for the key "leagues"
-                will be an empty array::
+                If the status code of the request is 200 and the league ID doesn't exist,
+                the value for the key "leagues" will be an empty array::
                     {'leagues': []}
 
                 Else (the status code of the request isn't 200) the dictionary will have the following structure::
@@ -156,7 +157,7 @@ class LoLEsportApi:
             log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
 
     def get_standings(self, tournament_id, hl: str = 'es-ES'):
-        """Retrieve the position splits/formats info for a given league (id, slug, startDate, endDate).
+        """Retrieve the position splits/formats info for a given tournaments (id, slug, startDate, endDate).
 
                 Parameters
                 ----------
@@ -171,8 +172,8 @@ class LoLEsportApi:
                  -------
                 dict
                     If the status code of the request is 200 and league ID exist, the dictionary will have the
-                    following structure (keep in mind than multiple dictionary with the same structure are expected on the
-                    array level)::
+                    following structure (keep in mind than multiple dictionary with the same structure
+                    are expected on the array level)::
 
                         {
                            'leagues': [{
@@ -277,8 +278,8 @@ class LoLEsportApi:
                     }
 
 
-                If the status code of the request is 200 and the league ID doesn't exist, the value for the key "leagues"
-                will be an empty array::
+                If the status code of the request is 200 and the league ID doesn't exist,
+                the value for the key "leagues" will be an empty array::
                     {'schedule': {'events': [], 'pages': {'newer': None, 'older': None}}}
 
         """
@@ -385,7 +386,7 @@ class LoLEsportApi:
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "es-ES".
+                The language code in which the information will be requested. By default, "es-ES".
 
             tournament_id: int (optional)
                 The tournament(s) ID(s) of which splits will be requested. If not provided all tournaments for
@@ -687,6 +688,120 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
             log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
 
+    def get_teams_for_tournament(self, tournament_id, hl='es-ES', simplify_data_mode: bool = False):
+        """
+        Retrieve the list of participating teams in a tournament.
+        If simplify_data_mode is False, teams will be separated by the phase
+        in which they participate (quarterfinals, semifinals, etc.) and the result for that phase.
+
+
+                    Parameters
+                    ----------
+                    hl : str
+                        The language code in which the information will be requested. By default "es-ES".
+
+                    tournament_id: str,int,int[] (Optional)
+                        The tournament(s) ID(s) of which splits will be requested.
+
+                    simplify_data_mode : bool (Optional)
+                        If true, the function only returns basic team information (id, name, slug, code, image)
+
+                    Returns
+                     -------
+                    dict
+        """
+        standings = self.get_standings(tournament_id=tournament_id, hl=hl)['standings']
+
+        # Separate stages (Play-in, play-off, regular season, etc)
+        stages = [stage for stages in standings for stage in stages['stages']]
+
+        # Initialization of the dictionary that will contain the data with the custom format
+        custom_stages = {'stages': []}
+
+        for stage in stages:
+
+            # Initialization of the stage dictionary
+            stage_teams = {
+                'name': stage['name'],
+                'slug': stage['slug'],
+                'type': stage['type'],
+                'teams': []
+            }
+
+            # If the type of stage is group (for example a regular season) we process each team of the stage,
+            # appending the position of the team on the competition and the group name to the team dictionary.
+            # Once appended, the new information is appended to "teams" on the stage dictionary.
+            if stage['type'] == "groups":
+                for section in stage['sections']:
+                    for position in section['rankings']:
+                        for team in position['teams']:
+                            team_dict = {
+                                **team,
+                                'group': section['name'],
+                                'position': position['ordinal']
+                            }
+                            stage_teams['teams'].append(team_dict)
+
+            # If the type of stage is bracket (for example a play-in phase) we process each match of the stage,
+            # processing each team from those matches.
+            # We extract the result of the team in that match, and relate it to the phase.
+            # If the team is not yet in the stage dictionary, we add it,if it is already in the dictionary, we append
+            # the match result to the "results" section of that team.
+            elif stage['type'] == "bracket":
+                for section in stage['sections']:
+                    for match in section['matches']:
+                        for team in match['teams']:
+
+                            current_team = team
+
+                            outcome = current_team.pop('result')
+                            outcome = outcome['outcome'] if outcome else None
+
+                            result = {'phase': section['name'], 'outcome': outcome}
+
+                            if current_team['id'] == "0":
+                                continue
+                            elif current_team['id'] not in [team['id'] for team in stage_teams['teams']]:
+
+                                team_dict = {
+                                    **current_team,
+                                    'results': [result]
+                                }
+                                stage_teams['teams'].append(team_dict)
+
+                            else:
+
+                                index_team = stage_teams['teams'].index(next(filter(lambda n:
+                                                                                    n.get('id') == current_team['id'],
+                                                                                    stage_teams['teams'])))
+                                team_data = stage_teams['teams'].pop(index_team)
+
+                                team_data['results'].append(result)
+
+                                stage_teams['teams'].append(team_data)
+
+            # Every processed stage is appended to the stage dictionary
+            custom_stages['stages'].append(stage_teams)
+
+        # If simplify_data_mode is True, the custom_stages dictionary is reprocessed to a new dictionary
+        # to only return each team once with only 5 properties (id, name, slug, code, image)
+        # Else the dictionary with all stages will be return
+        if simplify_data_mode:
+            teams_data_simplify = {'teams': []}
+            for team in [team for stage in custom_stages['stages'] for team in stage['teams']]:
+                team_dict = {
+                    'id': team['id'],
+                    'name': team['name'],
+                    'slug': team['slug'],
+                    'code': team['code'],
+                    'image': team['image']
+                }
+                if team['id'] not in [team['id'] for team in teams_data_simplify['teams']]:
+                    teams_data_simplify['teams'].append(team_dict)
+            return teams_data_simplify
+        else:
+            return custom_stages
+
     def get_window(self, game_id):
 
         """Get information about a game, game stats (drakes, barons, etc) and players stats.
@@ -751,6 +866,3 @@ class LoLEsportApi:
             return json.loads(response.text)
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
             log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
-
-
-
