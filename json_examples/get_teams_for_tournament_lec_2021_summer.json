@@ -1,0 +1,266 @@
+{
+    "stages": [
+        {
+            "name": "Temporada regular",
+            "slug": "regular_season",
+            "type": "groups",
+            "teams": [
+                {
+                    "id": "101383793574360315",
+                    "slug": "rogue",
+                    "name": "Rogue",
+                    "code": "RGE",
+                    "image": "http://static.lolesports.com/teams/1631819715136_rge-2021-worlds.png",
+                    "record": {
+                        "wins": 13,
+                        "losses": 5
+                    },
+                    "group": "Temporada regular",
+                    "position": 1
+                },
+                {
+                    "id": "98767991926151025",
+                    "slug": "g2-esports",
+                    "name": "G2 Esports",
+                    "code": "G2",
+                    "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                    "record": {
+                        "wins": 12,
+                        "losses": 6
+                    },
+                    "group": "Temporada regular",
+                    "position": 2
+                },
+                {
+                    "id": "103461966965149786",
+                    "slug": "mad-lions",
+                    "name": "MAD Lions",
+                    "code": "MAD",
+                    "image": "http://static.lolesports.com/teams/1631819614211_mad-2021-worlds.png",
+                    "record": {
+                        "wins": 12,
+                        "losses": 6
+                    },
+                    "group": "Temporada regular",
+                    "position": 3
+                },
+                {
+                    "id": "98767991940181526",
+                    "slug": "misfits-gaming",
+                    "name": "Misfits Gaming",
+                    "code": "MSF",
+                    "image": "http://static.lolesports.com/teams/1592591419157_MisfitsMSF-01-FullonDark.png",
+                    "record": {
+                        "wins": 12,
+                        "losses": 6
+                    },
+                    "group": "Temporada regular",
+                    "position": 4
+                },
+                {
+                    "id": "98767991866488695",
+                    "slug": "fnatic",
+                    "name": "Fnatic",
+                    "code": "FNC",
+                    "image": "http://static.lolesports.com/teams/1631819669150_fnc-2021-worlds.png",
+                    "record": {
+                        "wins": 11,
+                        "losses": 7
+                    },
+                    "group": "Temporada regular",
+                    "position": 5
+                },
+                {
+                    "id": "99322214695067838",
+                    "slug": "team-vitality",
+                    "name": "Team Vitality",
+                    "code": "VIT",
+                    "image": "http://static.lolesports.com/teams/Vitality-logo-color-outline-rgb.png",
+                    "record": {
+                        "wins": 8,
+                        "losses": 10
+                    },
+                    "group": "Temporada regular",
+                    "position": 6
+                },
+                {
+                    "id": "101383793569248484",
+                    "slug": "astralis",
+                    "name": "Astralis",
+                    "code": "AST",
+                    "image": "http://static.lolesports.com/teams/AST-FullonDark.png",
+                    "record": {
+                        "wins": 7,
+                        "losses": 11
+                    },
+                    "group": "Temporada regular",
+                    "position": 7
+                },
+                {
+                    "id": "101383793572656373",
+                    "slug": "excel",
+                    "name": "EXCEL",
+                    "code": "XL",
+                    "image": "http://static.lolesports.com/teams/Excel_FullColor2.png",
+                    "record": {
+                        "wins": 7,
+                        "losses": 11
+                    },
+                    "group": "Temporada regular",
+                    "position": 8
+                },
+                {
+                    "id": "101383793567806688",
+                    "slug": "sk-gaming",
+                    "name": "SK Gaming",
+                    "code": "SK",
+                    "image": "http://static.lolesports.com/teams/1643979272144_SK_Monochrome.png",
+                    "record": {
+                        "wins": 5,
+                        "losses": 13
+                    },
+                    "group": "Temporada regular",
+                    "position": 9
+                },
+                {
+                    "id": "99322214689444546",
+                    "slug": "schalke-04",
+                    "name": "Schalke 04",
+                    "code": "S04",
+                    "image": "http://static.lolesports.com/teams/S04_Standard_Logo1.png",
+                    "record": {
+                        "wins": 3,
+                        "losses": 15
+                    },
+                    "group": "Temporada regular",
+                    "position": 10
+                }
+            ]
+        },
+        {
+            "name": "Playoffs",
+            "slug": "playoffs",
+            "type": "bracket",
+            "teams": [
+                {
+                    "id": "99322214695067838",
+                    "slug": "team-vitality",
+                    "name": "Team Vitality",
+                    "code": "VIT",
+                    "image": "http://static.lolesports.com/teams/Vitality-logo-color-outline-rgb.png",
+                    "results": [
+                        {
+                            "phase": "Cuadro inferior: ronda 1",
+                            "outcome": "loss"
+                        }
+                    ]
+                },
+                {
+                    "id": "98767991940181526",
+                    "slug": "misfits-gaming",
+                    "name": "Misfits Gaming",
+                    "code": "MSF",
+                    "image": "http://static.lolesports.com/teams/1592591419157_MisfitsMSF-01-FullonDark.png",
+                    "results": [
+                        {
+                            "phase": "Cuadro superior: ronda 1",
+                            "outcome": "loss"
+                        },
+                        {
+                            "phase": "Cuadro inferior: ronda 2",
+                            "outcome": "loss"
+                        }
+                    ]
+                },
+                {
+                    "id": "98767991926151025",
+                    "slug": "g2-esports",
+                    "name": "G2 Esports",
+                    "code": "G2",
+                    "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                    "results": [
+                        {
+                            "phase": "Cuadro superior: ronda 1",
+                            "outcome": "loss"
+                        },
+                        {
+                            "phase": "Cuadro inferior: ronda 3",
+                            "outcome": "loss"
+                        }
+                    ]
+                },
+                {
+                    "id": "101383793574360315",
+                    "slug": "rogue",
+                    "name": "Rogue",
+                    "code": "RGE",
+                    "image": "http://static.lolesports.com/teams/1631819715136_rge-2021-worlds.png",
+                    "results": [
+                        {
+                            "phase": "Cuadro superior: ronda 1",
+                            "outcome": "win"
+                        },
+                        {
+                            "phase": "Cuadro superior: final",
+                            "outcome": "loss"
+                        },
+                        {
+                            "phase": "Cuadro inferior: final",
+                            "outcome": "loss"
+                        }
+                    ]
+                },
+                {
+                    "id": "103461966965149786",
+                    "slug": "mad-lions",
+                    "name": "MAD Lions",
+                    "code": "MAD",
+                    "image": "http://static.lolesports.com/teams/1631819614211_mad-2021-worlds.png",
+                    "results": [
+                        {
+                            "phase": "Cuadro superior: ronda 1",
+                            "outcome": "win"
+                        },
+                        {
+                            "phase": "Cuadro superior: final",
+                            "outcome": "win"
+                        },
+                        {
+                            "phase": "Final",
+                            "outcome": "win"
+                        }
+                    ]
+                },
+                {
+                    "id": "98767991866488695",
+                    "slug": "fnatic",
+                    "name": "Fnatic",
+                    "code": "FNC",
+                    "image": "http://static.lolesports.com/teams/1631819669150_fnc-2021-worlds.png",
+                    "results": [
+                        {
+                            "phase": "Cuadro inferior: ronda 1",
+                            "outcome": "win"
+                        },
+                        {
+                            "phase": "Cuadro inferior: ronda 2",
+                            "outcome": "win"
+                        },
+                        {
+                            "phase": "Cuadro inferior: ronda 3",
+                            "outcome": "win"
+                        },
+                        {
+                            "phase": "Cuadro inferior: final",
+                            "outcome": "win"
+                        },
+                        {
+                            "phase": "Final",
+                            "outcome": "loss"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,74 @@
+{
+    "teams": [
+        {
+            "id": "101383793574360315",
+            "name": "Rogue",
+            "slug": "rogue",
+            "code": "RGE",
+            "image": "http://static.lolesports.com/teams/1631819715136_rge-2021-worlds.png"
+        },
+        {
+            "id": "98767991926151025",
+            "name": "G2 Esports",
+            "slug": "g2-esports",
+            "code": "G2",
+            "image": "http://static.lolesports.com/teams/G2-FullonDark.png"
+        },
+        {
+            "id": "103461966965149786",
+            "name": "MAD Lions",
+            "slug": "mad-lions",
+            "code": "MAD",
+            "image": "http://static.lolesports.com/teams/1631819614211_mad-2021-worlds.png"
+        },
+        {
+            "id": "98767991940181526",
+            "name": "Misfits Gaming",
+            "slug": "misfits-gaming",
+            "code": "MSF",
+            "image": "http://static.lolesports.com/teams/1592591419157_MisfitsMSF-01-FullonDark.png"
+        },
+        {
+            "id": "98767991866488695",
+            "name": "Fnatic",
+            "slug": "fnatic",
+            "code": "FNC",
+            "image": "http://static.lolesports.com/teams/1631819669150_fnc-2021-worlds.png"
+        },
+        {
+            "id": "99322214695067838",
+            "name": "Team Vitality",
+            "slug": "team-vitality",
+            "code": "VIT",
+            "image": "http://static.lolesports.com/teams/Vitality-logo-color-outline-rgb.png"
+        },
+        {
+            "id": "101383793569248484",
+            "name": "Astralis",
+            "slug": "astralis",
+            "code": "AST",
+            "image": "http://static.lolesports.com/teams/AST-FullonDark.png"
+        },
+        {
+            "id": "101383793572656373",
+            "name": "EXCEL",
+            "slug": "excel",
+            "code": "XL",
+            "image": "http://static.lolesports.com/teams/Excel_FullColor2.png"
+        },
+        {
+            "id": "101383793567806688",
+            "name": "SK Gaming",
+            "slug": "sk-gaming",
+            "code": "SK",
+            "image": "http://static.lolesports.com/teams/1643979272144_SK_Monochrome.png"
+        },
+        {
+            "id": "99322214689444546",
+            "name": "Schalke 04",
+            "slug": "schalke-04",
+            "code": "S04",
+            "image": "http://static.lolesports.com/teams/S04_Standard_Logo1.png"
+        }
+    ]
+}
