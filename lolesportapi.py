@@ -86,11 +86,11 @@ class LoLEsportApi:
             params={'hl': hl}
         )
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_tournaments_for_league(self, hl: str = 'es-ES', league_id: int = None) -> dict:
         """Retrieve all splits/formats info for a given league (id, slug, startDate, endDate).
@@ -150,11 +150,11 @@ class LoLEsportApi:
             }
         )
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_standings(self, tournament_id, hl: str = 'es-ES'):
         """Retrieve the position splits/formats info for a given tournaments (id, slug, startDate, endDate).
@@ -214,11 +214,11 @@ class LoLEsportApi:
             }
         )
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_schedule(self, hl='es-ES', league_id: int = None, pageToken: str = None):
         """Retrieve the schedule for a given league (blockName, league(name, slug), match(flags,id,strategy,teams),
@@ -293,11 +293,11 @@ class LoLEsportApi:
         )
 
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_live(self, hl='es-ES'):
         """Retrieve the current live matches
@@ -370,11 +370,11 @@ class LoLEsportApi:
         )
 
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_completed_events(self, hl='es-ES', tournament_id=None):
 
@@ -425,11 +425,11 @@ class LoLEsportApi:
         )
 
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_event_details(self, match_id, hl='es-ES'):
 
@@ -494,11 +494,11 @@ class LoLEsportApi:
             }
         )
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_games(self, hl='es-ES', match_id=None):
 
@@ -600,11 +600,11 @@ class LoLEsportApi:
         )
 
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_teams(self, hl='es-ES', team_slug=None):
 
@@ -682,11 +682,11 @@ class LoLEsportApi:
         )
 
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_teams_for_tournament(self, tournament_id, hl='es-ES', simplify_data_mode: bool = False):
         """
@@ -823,11 +823,11 @@ class LoLEsportApi:
         )
 
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=True)
             return json.loads(response.text)
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_details(self, game_id, participant_ids=None):
 
@@ -861,8 +861,8 @@ class LoLEsportApi:
             }
         )
         try:
-            log.debug(f"Response content: {response.json()}")
+            log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=True)
             return json.loads(response.text)
         except (LoLEsportResponseError, LoLEsportStructureError) as error:
-            log.exception(f"Error on LoLEsport API response. Response: {response.json()}")
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
