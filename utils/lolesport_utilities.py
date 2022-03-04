@@ -1,9 +1,12 @@
+import logging
+
 import requests
 
 from Exceptions.lolesportsapi_exceptions import LoLEsportResponseError, LoLEsportStructureError
 
 import datetime
 
+log = logging.getLogger(__name__)
 
 def get_valid_date() -> str:
     """
@@ -22,8 +25,8 @@ def get_valid_date() -> str:
     # Datetime must be evenly divisible by 10 seconds, so we subtract the number on the right.
     now = now - datetime.timedelta(seconds=int(str(now.second)[-1]))
     now_string = now.strftime("%Y-%m-%dT%H:%M:%SZ")
-    print("hello :D")
 
+    log.debug(f"Window Time {now_string}")
     return now_string
 
 
