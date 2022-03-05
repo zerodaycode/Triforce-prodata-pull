@@ -1,6 +1,6 @@
 import logging
 
-from config import API_KEY, API_BASE_URL, LIVE_STATS_API, LANGUAGE_CODES
+from config import API_KEY, API_BASE_URL, LIVE_STATS_API
 
 from utils.lolesport_utilities import get_valid_date as window_date, check_correct_response
 from Exceptions.lolesportsapi_exceptions import LoLEsportResponseError, LoLEsportStructureError
@@ -40,46 +40,6 @@ class LoLEsportApi:
             Returns
              -------
             dict
-                If the status code of the request is 200, the dictionary will have the following
-                structure (keep in mind than multiple dictionary with the same structure
-                are expected on the array level)::
-
-                    {
-                        'leagues': [
-                            {
-                            'id': (str)(no-empty) 'The name of the league',
-                            'slug': 'URL friendly version of the league's name',
-                            'name': 'The name of the league',
-                            'region': 'EUROPA',
-                            'image': 'URL to an image of the League's logo',
-                            'priority': int,
-                            'displayPriority': {
-                                'position': int,
-                                'status': 'Unknown value definition'
-                                }
-                            },
-                            id': 'The league's ID',
-                            'slug': 'URL friendly version of the league's name',
-                            'name': 'The name of the league',
-                            'region': 'EUROPA',
-                            'image': 'URL to an image of the League's logo',
-                            'priority': int,
-                            'displayPriority': {
-                                'position': int,
-                                'status': 'Unknown value definition'
-                                }
-                            },
-                            ...
-                        ]
-
-                    }
-
-                Else (the status code of the request isn't 200) the dictionary will have the following structure::
-                    {
-                        'errors': [{
-                            'message': 'Error message'
-                            }]
-                    }
                 """
         response = self.session.get(
             API_BASE_URL + '/getLeagues',
@@ -89,7 +49,7 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_tournaments_for_league(self, hl: str = 'es-ES', league_id: int = None) -> dict:
@@ -107,40 +67,6 @@ class LoLEsportApi:
             Returns
              -------
             dict
-                If the status code of the request is 200 and league ID exist, the dictionary will have the
-                following structure (keep in mind than multiple dictionary with the same structure are expected on the
-                array level)::
-
-                    {
-                       'leagues': [{
-                            'tournaments': [
-                                {
-                                    'id': 'Tournament id',
-                                    'slug': 'URL friendly name of the tournament',
-                                    'startDate': 'Date the tournament start/started with format yyyy-mm-dd'
-                                    'endDate': 'Date the tournament end/ended yyyy-mm-dd'
-                                },
-                                {
-                                    'id': 'Tournament id',
-                                    'slug': 'URL friendly name of the tournament',
-                                    'startDate': 'Date the tournament start/started with format yyyy-mm-dd'
-                                    'endDate': 'Date the tournament end/ended yyyy-mm-dd'
-                                }.
-                                ...
-                            ]}
-
-                    }
-
-                If the status code of the request is 200 and the league ID doesn't exist,
-                the value for the key "leagues" will be an empty array::
-                    {'leagues': []}
-
-                Else (the status code of the request isn't 200) the dictionary will have the following structure::
-                    {
-                        'errors': [{
-                            'message': 'Error message'
-                            }]
-                    }
             """
         response = self.session.get(
             API_BASE_URL + '/getTournamentsForLeague',
@@ -153,7 +79,7 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_standings(self, tournament_id, hl: str = 'es-ES'):
@@ -171,40 +97,6 @@ class LoLEsportApi:
                 Returns
                  -------
                 dict
-                    If the status code of the request is 200 and league ID exist, the dictionary will have the
-                    following structure (keep in mind than multiple dictionary with the same structure
-                    are expected on the array level)::
-
-                        {
-                           'leagues': [{
-                                'tournaments': [
-                                    {
-                                        'id': 'Tournament id',
-                                        'slug': 'URL friendly name of the tournament',
-                                        'startDate': 'Date the tournament start/started with format yyyy-mm-dd'
-                                        'endDate': 'Date the tournament end/ended yyyy-mm-dd'
-                                    },
-                                    {
-                                        'id': 'Tournament id',
-                                        'slug': 'URL friendly name of the tournament',
-                                        'startDate': 'Date the tournament start/started with format yyyy-mm-dd'
-                                        'endDate': 'Date the tournament end/ended yyyy-mm-dd'
-                                    }.
-                                    ...
-                                ]}
-
-                        }
-
-                    If the status code of the request is 200 and the league ID doesn't exist,
-                    the value for the key "leagues" will be an empty array::
-                        {'leagues': []}
-
-                    Else (the status code of the request isn't 200) the dictionary will have the following structure::
-                        {
-                            'errors': [{
-                                'message': 'Error message'
-                                }]
-                        }
                 """
         response = self.session.get(
             API_BASE_URL + '/getStandings',
@@ -217,10 +109,10 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_schedule(self, hl='es-ES', league_id: int = None, pageToken: str = None):
+    def get_schedule(self, hl='es-ES', league_id: int = None, pagetoken: str = None):
         """Retrieve the schedule for a given league (blockName, league(name, slug), match(flags,id,strategy,teams),
             startTime,state,type).
 
@@ -233,62 +125,19 @@ class LoLEsportApi:
                 The league(s) ID(s) of which schedule will be requested. If not provided all schedule for all leagues
                 will be requested.
 
-            pageToken: str, optional
+            pagetoken: str, optional
                 Base 64 encoded string used to determine the next "page" of data to pull.
 
             Returns
              -------
             dict
-                If the status code of the request is 200 and league ID exist, the dictionary will have the
-                following structure (keep in mind than multiple dictionary with the same structure are expected on the
-                array level)::
-
-                    {
-                    'schedule':
-                        {'events':
-                            [
-                                {
-                                'blockName': 'Section/Black name',
-                                'league': {
-                                        'name': 'League  name',
-                                        'slug': 'URL friendly name of the league'
-                                         },
-                                'match': {
-                                        'flags': [],
-                                        'id': 'Match ID',
-                                        'strategy': {'count': (int) total match of the serie,
-                                                    'type': 'Type of game example "bestOf"'},
-                                        'teams': [{'code': 'Team short name',
-                                                   'image': 'URL team logo',
-                                                   'name': 'Team full name',
-                                                  'record': {'losses': (int) Number of defeats,
-                                                              'wins': (int) Number of victories},
-                                                   'result': {'gameWins': (int) games win,
-                                                              'outcome': 'win or loss'}}]},
-                                                  {'code': 'Team short name',
-                                                   'image': 'URL team logo',
-                                                   'name': 'Team full name',
-                                                   'record': {'losses': (int) Number of defeats,
-                                                              'wins': (int) Number of victories},
-                                                   'result': {'gameWins': (int) games win,
-                                                              'outcome': 'win or loss'}}]},
-                              'startTime': 'YYYY-MM-DDTHH:mm:ssZ',
-                              'state': 'State of de match',
-                              'type': 'match'}
-                    }
-
-
-                If the status code of the request is 200 and the league ID doesn't exist,
-                the value for the key "leagues" will be an empty array::
-                    {'schedule': {'events': [], 'pages': {'newer': None, 'older': None}}}
-
         """
         response = self.session.get(
             API_BASE_URL + '/getSchedule',
             params={
                 'hl': hl,
                 'leagueId': league_id,
-                'pageToken': pageToken
+                'pageToken': pagetoken
             }
         )
 
@@ -296,7 +145,7 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_live(self, hl='es-ES'):
@@ -310,59 +159,6 @@ class LoLEsportApi:
             Returns
              -------
             dict
-                Example of a correct response::
-            {
-                    'schedule':
-                        {'events':
-                            [
-                                {'blockName': 'Semana 4',
-                              'id': '107439320898324934',
-                              'league': {'displayPriority': {'position': 17,
-                                                             'status': 'not_selected'},
-                                         'id': '105709090213554609',
-                                         'image': 'http://static.lolesports.com/leagues/lco-color-white.png',
-                                         'name': 'LCO',
-                                         'priority': 207,
-                                         'slug': 'lco'},
-                              'match': {'games': [{'id': '107439320898324935',
-                                                   'number': 1,
-                                                   'state': 'inProgress',
-                                                   'teams': [{'id': '98767991921462763',
-                                                              'side': 'blue'},
-                                                             {'id': '101383792891050518',
-                                                              'side': 'red'}],
-                                                   'vods': []}],
-                                        'id': '107439320898324934',
-                                        'strategy': {'count': 1, 'type': 'bestOf'},
-                                        'teams': [{'code': 'DW',
-                                                   'id': '98767991921462763',
-                                                   'image': 'http://static.lolesports.com/teams/direwolves.png',
-                                                   'name': 'Dire Wolves',
-                                                   'record': {'losses': 5,
-                                                              'wins': 2},
-                                                   'result': {'gameWins': 0,
-                                                              'outcome': None},
-                                                   'slug': 'dire-wolves'},
-                                                  {'code': 'GRV',
-                                                   'id': '101383792891050518',
-                                                   'image': 'http://static.lolesports.com/teams/gravitas-logo.png',
-                                                   'name': 'Gravitas',
-                                                   'record': {'losses': 6,
-                                                              'wins': 1},
-                                                   'result': {'gameWins': 0,
-                                                              'outcome': None},
-                                                   'slug': 'gravitas'}]},
-                              'startTime': '2022-02-15T09:00:00Z',
-                              'state': 'inProgress',
-                              'streams': [{'countries': ['AU', 'NZ'],
-                                           'locale': 'en-AU',
-                                           'offset': -200000,
-                                           'parameter': 'lco',
-                                           'provider': 'twitch'}],
-                              'tournament': {'id': '107439320897210747'},
-                              'type': 'match'}
-                              ]
-                    }
         """
         response = self.session.get(
             API_BASE_URL + '/getLive',
@@ -373,7 +169,7 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_completed_events(self, hl='es-ES', tournament_id=None):
@@ -395,26 +191,6 @@ class LoLEsportApi:
             Returns
              -------
             dict
-                Example of a correct response::
-            {
-                    'schedule': { 'events': [{'blockName': 'Semana 1',
-                                  'games': [{'id': '104169295283008519',
-                                             'vods': [{'parameter': 'f93tqKrcDqA'}]}],
-                                  'league': {'name': 'LEC'},
-                                  'match': {'id': '104169295283008518',
-                                            'strategy': {'count': 1, 'type': 'bestOf'},
-                                            'teams': [{'code': 'G2',
-                                                       'image': 'http://static.lolesports.com/teams/G2-FullonDark.png',
-                                                       'name': 'G2 Esports',
-                                                       'result': {'gameWins': 1}},
-                                                      {'code': 'MAD',
-                                                       'image': 'http://static.lolesports.com/teams/1631819614211_mad-2021-worlds.png',
-                                                       'name': 'MAD Lions',
-                                                       'result': {'gameWins': 0}}],
-                                            'type': 'normal'},
-                                  'startTime': '2020-06-12T16:00:00Z'}
-                            ]
-                    }
         """
         response = self.session.get(
             API_BASE_URL + '/getCompletedEvents',
@@ -428,7 +204,7 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_event_details(self, match_id, hl='es-ES'):
@@ -447,43 +223,6 @@ class LoLEsportApi:
             Returns
              -------
             dict
-                Example of a correct response::
-                {'event': {'id': '107468370561257634',
-               'league': {'id': '105266103462388553',
-                          'image': 'http://static.lolesports.com/leagues/LFL_Logo_2020_black1.png',
-                          'name': 'La Ligue Française',
-                          'slug': 'lfl'},
-               'match': {'games': [{'id': '107468370561257635',
-                                    'number': 1,
-                                    'state': 'completed',
-                                    'teams': [{'id': '105514907449611976',
-                                               'side': 'blue'},
-                                              {'id': '105515345386578249',
-                                               'side': 'red'}],
-                                    'vods': []}],
-                         'strategy': {'count': 1},
-                         'teams': [{'code': 'BDSA',
-                                    'id': '105514907449611976',
-                                    'image': 'http://static.lolesports.com/teams/1641944663689_bdslogo.png',
-                                    'name': 'Team BDS Academy',
-                                    'result': {'gameWins': 1}},
-                                   {'code': 'SLY',
-                                    'id': '105515345386578249',
-                                    'image': 'http://static.lolesports.com/teams/LFL-SLY-logo.png',
-                                    'name': 'Solary',
-                                    'result': {'gameWins': 0}}]},
-               'streams': [{'countries': [],
-                            'locale': 'en-US',
-                            'offset': -330000,
-                            'parameter': 'northernarena',
-                            'provider': 'twitch'},
-                           {'countries': ['FR', 'CA'],
-                            'locale': 'fr-FR',
-                            'offset': -330000,
-                            'parameter': 'otplol_',
-                            'provider': 'twitch'}],
-               'tournament': {'id': '107468370558963709'},
-               'type': 'match'}}
         """
 
         response = self.session.get(
@@ -497,7 +236,7 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_games(self, hl='es-ES', match_id=None):
@@ -518,77 +257,6 @@ class LoLEsportApi:
             Returns
              -------
             dict
-                Example of a correct response::
-
-                "games": [
-                 {
-                        "id": "100783238203695975",
-                        "state": "completed",
-                        "number": 1,
-                        "vods": [
-                            {
-                                "locale": "cs-CZ",
-                                "parameter": "FEIM1zlXcmI",
-                                "provider": "youtube",
-                                "offset": 0
-                            },
-                            {
-                                "locale": "de-DE",
-                                "parameter": "k9zS682mNdI",
-                                "provider": "youtube",
-                                "offset": 0
-                            },
-                            {
-                                "locale": "en-US",
-                                "parameter": "Vay2YGGv9CI",
-                                "provider": "youtube",
-                                "offset": 0
-                            },
-                            {
-                                "locale": "es-ES",
-                                "parameter": "ofVeoAFHu38",
-                                "provider": "youtube",
-                                "offset": 0
-                            },
-                            {
-                                "locale": "es-MX",
-                                "parameter": "lE_jtAbTnPM",
-                                "provider": "youtube",
-                                "offset": 0
-                            },
-                            {
-                                "locale": "fr-FR",
-                                "parameter": "o28d5oPmQEw",
-                                "provider": "youtube",
-                                "offset": 0
-                            },
-                            {
-                                "locale": "it-IT",
-                                "parameter": "Zxkw89qlIjc",
-                                "provider": "youtube",
-                                "offset": 0
-                            },
-                            {
-                                "locale": "pt-BR",
-                                "parameter": "9DypUVTPjz0",
-                                "provider": "youtube",
-                                "offset": 0
-                            },
-                            {
-                                "locale": "ru-RU",
-                                "parameter": "kmNwqpLlheI",
-                                "provider": "youtube",
-                                "offset": 0
-                            },
-                            {
-                                "locale": "tr-TR",
-                                "parameter": "8qiFpEugwio",
-                                "provider": "youtube",
-                                "offset": 0
-                            }
-                        ]
-                    }
-                ]
         """
         response = self.session.get(
             API_BASE_URL + '/getGames',
@@ -603,81 +271,32 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_teams(self, hl='es-ES', team_slug=None):
+    def get_teams(self, hl='es-ES', team_identifier=None):
 
         """Get information about a team a unneeded match (image,code,region,id,players,etc).
-            If team_slug is not provided all teams will be requested.
+            If team_identifier is not provided all teams will be requested.
 
             Parameters
             ----------
             hl : str
                 The language code in which the information will be requested. By default "es-ES".
 
-            team_slug: str (optional)
-                The team_slug of which information will be requested.
+            team_identifier: str, id (optional)
+                The team slug or id of which information will be requested.
                 If team_slug is not provided all teams will be requested.
 
             Returns
              -------
             dict
-                Example of a correct response::
-
-              {'teams': [{'alternativeImage': 'http://static.lolesports.com/teams/1592589079402_T1T1-03-SingleonLight.png',
-                'backgroundImage': 'http://static.lolesports.com/teams/1596305556675_T1T1.png',
-                'code': 'T1',
-                'homeLeague': {'name': 'LCK', 'region': 'COREA'},
-                'id': '98767991853197861',
-                'image': 'http://static.lolesports.com/teams/1631819523085_t1-2021-worlds.png',
-                'name': 'T1',
-                'players': [{'firstName': 'Sanghyeok',
-                             'id': '98767991747728851',
-                             'image': 'http://static.lolesports.com/players/1642154893872_T1_Faker_F.png',
-                             'lastName': 'Lee',
-                             'role': 'mid',
-                             'summonerName': 'Faker'},
-                            {'firstName': 'Minhyung',
-                             'id': '103495716775975785',
-                             'image': 'http://static.lolesports.com/players/1642154901155_T1_Gumayusi_F.png',
-                             'lastName': 'Lee',
-                             'role': 'bottom',
-                             'summonerName': 'Gumayusi'},
-                            {'firstName': 'HYUNJUN',
-                             'id': '105320682452092471',
-                             'image': 'http://static.lolesports.com/players/1642154916489_T1_Oner_F.png',
-                             'lastName': 'MUN',
-                             'role': 'jungle',
-                             'summonerName': 'Oner'},
-                            {'firstName': 'Minseok',
-                             'id': '103495716561790834',
-                             'image': 'http://static.lolesports.com/players/1642154909657_T1_Keria_F.png',
-                             'lastName': 'Ryu',
-                             'role': 'support',
-                             'summonerName': 'Keria'},
-                            {'firstName': 'Taeki',
-                             'id': '100205573453110710',
-                             'image': 'http://static.lolesports.com/players/1642154884897_T1_Asper_F.png',
-                             'lastName': 'Kim',
-                             'role': 'support',
-                             'summonerName': 'Asper'},
-                            {'firstName': 'Wooje',
-                             'id': '105320680474347057',
-                             'image': 'http://static.lolesports.com/players/1642154923328_T1_Zeus_F.png',
-                             'lastName': 'Choi',
-                             'role': 'top',
-                             'summonerName': 'Zeus'}],
-                'slug': 't1',
-                'status': 'active'}
-
-                ]}
         """
         response = self.session.get(
             API_BASE_URL + '/getTeams',
             params={
                 'hl': hl,
-                'id': team_slug
+                'id': team_identifier
             }
         )
 
@@ -685,7 +304,7 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
             return json.loads(response.text)['data']
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_teams_for_tournament(self, tournament_id, hl='es-ES', simplify_data_mode: bool = False):
@@ -694,21 +313,20 @@ class LoLEsportApi:
         If simplify_data_mode is False, teams will be separated by the phase
         in which they participate (quarterfinals, semifinals, etc.) and the result for that phase.
 
+        Parameters
+        ----------
+        hl : str
+            The language code in which the information will be requested. By default "es-ES".
 
-                    Parameters
-                    ----------
-                    hl : str
-                        The language code in which the information will be requested. By default "es-ES".
+        tournament_id: str,int,int[] (Optional)
+            The tournament(s) ID(s) of which splits will be requested.
 
-                    tournament_id: str,int,int[] (Optional)
-                        The tournament(s) ID(s) of which splits will be requested.
+        simplify_data_mode : bool (Optional)
+            If true, the function only returns basic team information (id, name, slug, code, image)
 
-                    simplify_data_mode : bool (Optional)
-                        If true, the function only returns basic team information (id, name, slug, code, image)
-
-                    Returns
-                     -------
-                    dict
+        Returns
+         -------
+        dict
         """
         standings = self.get_standings(tournament_id=tournament_id, hl=hl)['standings']
 
@@ -802,6 +420,65 @@ class LoLEsportApi:
         else:
             return custom_stages
 
+    def get_players(self, hl='es-ES', team_identifier=None):
+
+        """Get players for a team (id,summonerName,firstName,lastName,image,rol).
+        If team_identifier is not provided all players will be requested, adding to the previous
+        information to which team(s) the player belong(s).
+
+            Parameters
+            ----------
+            hl : str
+              The language code in which the information will be requested. By default "es-ES".
+
+            team_identifier: str, id (optional)
+              The team slug or id of which information will be requested.
+              If team_slug is not provided all teams will be requested.
+
+            Returns
+            -------
+            dict
+        """
+        data = self.get_teams(hl=hl, team_identifier=team_identifier)
+
+        # Removing placeholders team from the data
+        data = [team for team in data['teams'] if
+                (team['slug'] != "tbd" and team['name'] != "TBD") or team['id'] != "0"]
+
+        # Initialization of the custom formatted dictionary
+        players_dict = {'players': []}
+
+        # Processing each player of each team on the retrieved data
+        # Only players on active teams and who have a role in it will be added on the custom formatted dictionary.
+        # The ID of the team to which the player belongs is added to his information.
+        # the first time we add him to the dictionary means that he belongs to more than one team,
+        # so we add the team's ID to the "teams" key of the player's information.
+        for team in data:
+            for player in team['players']:
+                if team['status'] != "archived" and player['role'] != "none":
+                    if player['id'] in [player['id'] for player in players_dict['players']]:
+                        index_player = players_dict['players'].index(
+                            next(filter(lambda n: n.get('id') == player['id'], players_dict['players'])))
+
+                        player_data = players_dict['players'].pop(index_player)
+
+                        player_data['teams'].append(team['id'])
+
+                        players_dict['players'].append(player_data)
+                    else:
+                        custom_player_dict = {
+                            **player,
+                            'teams': [team['id']]
+                        }
+                        players_dict['players'].append(custom_player_dict)
+
+        # If the user specify a team identifier, we remove the "teams" key from player's information
+        if team_identifier:
+            for player in players_dict['players']:
+                player.pop('teams')
+
+        return players_dict
+
     def get_window(self, game_id):
 
         """Get information about a game, game stats (drakes, barons, etc) and players stats.
@@ -826,7 +503,7 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=True)
             return json.loads(response.text)
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
     def get_details(self, game_id, participant_ids=None):
@@ -864,5 +541,5 @@ class LoLEsportApi:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=True)
             return json.loads(response.text)
-        except (LoLEsportResponseError, LoLEsportStructureError) as error:
+        except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
