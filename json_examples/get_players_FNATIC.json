@@ -1,0 +1,44 @@
+{
+    "players": [
+        {
+            "id": "99322214606051339",
+            "summonerName": "Hylissang",
+            "firstName": "Zdravets",
+            "lastName": "Iliev Galabov",
+            "image": "http://static.lolesports.com/players/1642003577959_hylissang.png",
+            "role": "support"
+        },
+        {
+            "id": "99322214653265200",
+            "summonerName": "Upset",
+            "firstName": "Elias",
+            "lastName": "Lipp",
+            "image": "http://static.lolesports.com/players/1642003660401_upset.png",
+            "role": "bottom"
+        },
+        {
+            "id": "99322214618656216",
+            "summonerName": "Wunder",
+            "firstName": "Martin",
+            "lastName": "Hansen",
+            "image": "http://static.lolesports.com/players/1642003694045_wunder.png",
+            "role": "top"
+        },
+        {
+            "id": "100356590519370319",
+            "summonerName": "Humanoid",
+            "firstName": " Marek",
+            "lastName": "Brázda",
+            "image": "http://static.lolesports.com/players/1642003533124_humanoid.png",
+            "role": "mid"
+        },
+        {
+            "id": "100238780551262852",
+            "summonerName": "Razork",
+            "firstName": "Iván",
+            "lastName": "Martín",
+            "image": "http://static.lolesports.com/players/1642003610508_razork.png",
+            "role": "jungle"
+        }
+    ]
+}
