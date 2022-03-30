@@ -2,3 +2,4 @@ requests~=2.26.0
 colorlog~=6.6.0
 mwrogue~=0.1.2
 psycopg2~=2.9.3
+paramiko~=2.10.3
