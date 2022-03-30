@@ -29,18 +29,23 @@ class LoLEsportApi:
             """
         self.default_language = language_code
 
-    def get_leagues(self, hl: str = "en-US") -> dict:
+    def get_leagues(self, hl: str = None) -> dict:
         """Retrieve leagues information (id, slug, name, region, image, priority, displayPriority).
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "en-US"
+                The language code in which the information will be requested.
+                If not provided, take the default language value from the class.
 
             Returns
              -------
             dict
                 """
+
+        if hl is None:
+            hl = self.default_language
+
         response = self.session.get(
             API_BASE_URL + '/getLeagues',
             params={'hl': hl}
@@ -52,13 +57,14 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_tournaments_for_league(self, hl: str = "en-US", league_id: int = None) -> dict:
+    def get_tournaments_for_league(self, hl: str = None, league_id: int = None) -> dict:
         """Retrieve all splits/formats info for a given league (id, slug, startDate, endDate).
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "en-US"
+                The language code in which the information will be requested.
+                If not provided, take the default language value from the class.
 
             league_id: int (optional)
                 The league ID of which splits will be requested. If not provided all tournaments for all leagues
@@ -68,6 +74,9 @@ class LoLEsportApi:
              -------
             dict
             """
+        if hl is None:
+            hl = self.default_language
+
         response = self.session.get(
             API_BASE_URL + '/getTournamentsForLeague',
             params={
@@ -82,13 +91,14 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_standings(self, tournament_id, hl: str = "en-US"):
+    def get_standings(self, tournament_id, hl: str = None):
         """Retrieve the position splits/formats info for a given tournaments (id, slug, startDate, endDate).
 
                 Parameters
                 ----------
                 hl : str
-                    The language code in which the information will be requested. By default "en-US"
+                    The language code in which the information will be requested.
+                    If not provided, take the default language value from the class.
 
                 tournament_id: int,int[] (Optional)
                     The tournament(s) ID(s) of which splits will be requested. If not provided all tournaments for
@@ -98,6 +108,10 @@ class LoLEsportApi:
                  -------
                 dict
                 """
+
+        if hl is None:
+            hl = self.default_language
+
         response = self.session.get(
             API_BASE_URL + '/getStandings',
             params={
@@ -112,14 +126,15 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_schedule(self, hl="en-US", league_id: int = None, pagetoken: str = None):
+    def get_schedule(self, hl=None, league_id: int = None, pagetoken: str = None):
         """Retrieve the schedule for a given league (blockName, league(name, slug), match(flags,id,strategy,teams),
             startTime,state,type).
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "en-US".
+                The language code in which the information will be requested.
+                If not provided, take the default language value from the class.
 
             league_id:  int, optional
                 The league(s) ID(s) of which schedule will be requested. If not provided all schedule for all leagues
@@ -132,6 +147,10 @@ class LoLEsportApi:
              -------
             dict
         """
+
+        if hl is None:
+            hl = self.default_language
+
         response = self.session.get(
             API_BASE_URL + '/getSchedule',
             params={
@@ -148,18 +167,23 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_live(self, hl="en-US"):
+    def get_live(self, hl=None):
         """Retrieve the current live matches
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "en-US".
+                The language code in which the information will be requested.
+                If not provided, take the default language value from the class.
 
             Returns
              -------
             dict
         """
+
+        if hl is None:
+            hl = self.default_language
+
         response = self.session.get(
             API_BASE_URL + '/getLive',
             params={'hl': hl}
@@ -172,7 +196,7 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_completed_events(self, hl="en-US", tournament_id=None):
+    def get_completed_events(self, hl=None, tournament_id=None):
 
         # TODO It seems data before summer 2019 isn't available, need more investigation
 
@@ -182,7 +206,8 @@ class LoLEsportApi:
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default, "en-US".
+                The language code in which the information will be requested.
+                If not provided, take the default language value from the class.
 
             tournament_id: int (optional)
                 The tournament(s) ID(s) of which splits will be requested. If not provided all tournaments for
@@ -192,6 +217,10 @@ class LoLEsportApi:
              -------
             dict
         """
+
+        if hl is None:
+            hl = self.default_language
+
         response = self.session.get(
             API_BASE_URL + '/getCompletedEvents',
             params={
@@ -207,14 +236,15 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_event_details(self, match_id, hl="en-US"):
+    def get_event_details(self, match_id, hl=None):
 
         """Get information about a match metadata like league, teams, vods and who stream the game.
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "en-US".
+                The language code in which the information will be requested.
+                If not provided, take the default language value from the class.
 
             match_id: int,str
                 The match(s) ID(s) of which information will be requested.
@@ -224,6 +254,9 @@ class LoLEsportApi:
              -------
             dict
         """
+
+        if hl is None:
+            hl = self.default_language
 
         response = self.session.get(
             API_BASE_URL + '/getEventDetails',
@@ -239,7 +272,7 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_games(self, hl="en-US", match_id=None):
+    def get_games(self, hl=None, match_id=None):
 
         """Get information about a completed or unneeded match (id,number,state,vods).
             If match_id is not provided all games will be requested
@@ -247,7 +280,8 @@ class LoLEsportApi:
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "en-US".
+                The language code in which the information will be requested.
+                If not provided, take the default language value from the class.
 
             match_id: str, int (optional)
                 The match_id(s) ID(s) of which information will be requested. If not provided all games for
@@ -258,6 +292,10 @@ class LoLEsportApi:
              -------
             dict
         """
+
+        if hl is None:
+            hl = self.default_language
+
         response = self.session.get(
             API_BASE_URL + '/getGames',
             params={
@@ -274,7 +312,7 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_teams(self, hl="en-US", team_identifier=None, only_active: bool = False):
+    def get_teams(self, hl=None, team_identifier=None, only_active: bool = False):
 
         """Get information about a team a unneeded match (image,code,region,id,players,etc).
             If team_identifier is not provided all teams will be requested.
@@ -282,7 +320,8 @@ class LoLEsportApi:
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "en-US".
+                The language code in which the information will be requested.
+                If not provided, take the default language value from the class.
 
             team_identifier: str, id (optional)
                 The team slug or id of which information will be requested.
@@ -295,6 +334,10 @@ class LoLEsportApi:
              -------
             dict
         """
+
+        if hl is None:
+            hl = self.default_language
+
         response = self.session.get(
             API_BASE_URL + '/getTeams',
             params={
@@ -333,7 +376,7 @@ class LoLEsportApi:
         response = self.session.get(
             LIVE_STATS_API + f'/window/{game_id}',
             params={
-                'startingTime': window_date()
+                'startingTime': valid_datetime
             }
         )
 
@@ -347,19 +390,21 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_details(self, game_id, participant_ids=None, valid_datetime=None):
+    def get_details(self, game_id, participant_ids=None, valid_datetime: str = None):
 
         """Get information about a player(s) on a game.
             Parameters
             ----------
 
-            game_id : str
+            game_id : str, int
                 The game id of which information will be requested.
 
             participant_ids : str, int, int[] (Optional)
                 The participant(s) id of which information will be requested.
                 Must be an int, string or list of int
 
+            valid_datetime: str (optional)
+                A valid window time.
             Returns
             -------
             dict
@@ -389,7 +434,7 @@ class LoLEsportApi:
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_teams_for_tournament(self, tournament_id, hl="en-US", simplify_data_mode: bool = False):
+    def get_teams_for_tournament(self, tournament_id, hl=None, simplify_data_mode: bool = False):
         """
         Retrieve the list of participating teams in a tournament.
         If simplify_data_mode is False, teams will be separated by the phase
@@ -398,7 +443,8 @@ class LoLEsportApi:
         Parameters
         ----------
         hl : str
-            The language code in which the information will be requested. By default "en-US".
+            The language code in which the information will be requested.
+            If not provided, take the default language value from the class.
 
         tournament_id: str,int,int[] (Optional)
             The tournament(s) ID(s) of which splits will be requested.
@@ -410,6 +456,10 @@ class LoLEsportApi:
          -------
         dict
         """
+
+        if hl is None:
+            hl = self.default_language
+
         standings = self.get_standings(tournament_id=tournament_id, hl=hl)['standings']
 
         # Separate stages (Play-in, play-off, regular season, etc)
@@ -502,7 +552,7 @@ class LoLEsportApi:
         else:
             return custom_stages
 
-    def get_players(self, hl="en-US", team_identifier=None):
+    def get_players(self, hl=None, team_identifier=None):
 
         """Get players for a team (id,summonerName,firstName,lastName,image,rol).
         If team_identifier is not provided all players will be requested, adding to the previous
@@ -511,7 +561,8 @@ class LoLEsportApi:
             Parameters
             ----------
             hl : str
-              The language code in which the information will be requested. By default "en-US".
+              The language code in which the information will be requested.
+              If not provided, take the default language value from the class.
 
             team_identifier: str, id (optional)
               The team slug or id of which information will be requested.
@@ -521,6 +572,10 @@ class LoLEsportApi:
             -------
             dict
         """
+
+        if hl is None:
+            hl = self.default_language
+
         data = self.get_teams(hl=hl, team_identifier=team_identifier)
 
         # Removing placeholders team from the data
@@ -561,7 +616,10 @@ class LoLEsportApi:
 
         return players_dict
 
-    def get_live_games_info(self, only_ids: bool = False, hl="en-US"):
+    def get_live_games_info(self, only_ids: bool = False, hl=None):
+
+        if hl is None:
+            hl = self.default_language
 
         live_data = self.get_live(hl=hl)['schedule']['events']
 
@@ -638,7 +696,7 @@ class LoLEsportApi:
 
     def get_window_details(self, game_id: str):
         valid_datetime = window_date()
-        window = self.get_window(game_id, valid_datetime)
+        window = self.get_window(game_id=game_id, valid_datetime=valid_datetime)
         details = self.get_details(game_id=game_id, valid_datetime=valid_datetime)
 
         return window, details
@@ -699,7 +757,11 @@ class LoLEsportApi:
 
         return merged_window
 
-    def get_tournaments_league_related(self, hl="en-US", league_id=None, mode="ongoing"):
+    def get_tournaments_league_related(self, hl=None, league_id=None, mode="ongoing"):
+
+        if hl is None:
+            hl = self.default_language
+
         if not league_id:
             leagues = self.get_leagues(hl=hl)
             league_id = ",".join([league['id'] for league in leagues['leagues']])
