@@ -1,10 +1,10 @@
+import datetime
 import logging
 
 from config import API_KEY, API_BASE_URL, LIVE_STATS_API
 
-from utils.lolesport_utilities import get_valid_date as window_date, check_correct_response
+from utils.lolesport_utilities import get_valid_date as window_date, check_correct_response, unique_dicts
 from Exceptions.lolesportsapi_exceptions import LoLEsportResponseError, LoLEsportStructureError
-import json
 import requests
 
 log = logging.getLogger(__name__)
@@ -15,7 +15,7 @@ class LoLEsportApi:
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update(API_KEY)
-        self.default_language = "es-ES"
+        self.default_language = "en-US"
 
     def set_default_language(self, language_code):
         # TODO implement language code error
@@ -29,13 +29,13 @@ class LoLEsportApi:
             """
         self.default_language = language_code
 
-    def get_leagues(self, hl: str = 'es-ES') -> dict:
+    def get_leagues(self, hl: str = "en-US") -> dict:
         """Retrieve leagues information (id, slug, name, region, image, priority, displayPriority).
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "es-ES"
+                The language code in which the information will be requested. By default "en-US"
 
             Returns
              -------
@@ -48,17 +48,17 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
-            return json.loads(response.text)['data']
+            return response.json()['data']
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_tournaments_for_league(self, hl: str = 'es-ES', league_id: int = None) -> dict:
+    def get_tournaments_for_league(self, hl: str = "en-US", league_id: int = None) -> dict:
         """Retrieve all splits/formats info for a given league (id, slug, startDate, endDate).
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "es-ES"
+                The language code in which the information will be requested. By default "en-US"
 
             league_id: int (optional)
                 The league ID of which splits will be requested. If not provided all tournaments for all leagues
@@ -78,17 +78,17 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
-            return json.loads(response.text)['data']
+            return response.json()['data']
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_standings(self, tournament_id, hl: str = 'es-ES'):
+    def get_standings(self, tournament_id, hl: str = "en-US"):
         """Retrieve the position splits/formats info for a given tournaments (id, slug, startDate, endDate).
 
                 Parameters
                 ----------
                 hl : str
-                    The language code in which the information will be requested. By default "es-ES"
+                    The language code in which the information will be requested. By default "en-US"
 
                 tournament_id: int,int[] (Optional)
                     The tournament(s) ID(s) of which splits will be requested. If not provided all tournaments for
@@ -108,18 +108,18 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
-            return json.loads(response.text)['data']
+            return response.json()['data']
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_schedule(self, hl='es-ES', league_id: int = None, pagetoken: str = None):
+    def get_schedule(self, hl="en-US", league_id: int = None, pagetoken: str = None):
         """Retrieve the schedule for a given league (blockName, league(name, slug), match(flags,id,strategy,teams),
             startTime,state,type).
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "es-ES".
+                The language code in which the information will be requested. By default "en-US".
 
             league_id:  int, optional
                 The league(s) ID(s) of which schedule will be requested. If not provided all schedule for all leagues
@@ -144,17 +144,17 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
-            return json.loads(response.text)['data']
+            return response.json()['data']
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_live(self, hl='es-ES'):
+    def get_live(self, hl="en-US"):
         """Retrieve the current live matches
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "es-ES".
+                The language code in which the information will be requested. By default "en-US".
 
             Returns
              -------
@@ -168,11 +168,11 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
-            return json.loads(response.text)['data']
+            return response.json()['data']
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_completed_events(self, hl='es-ES', tournament_id=None):
+    def get_completed_events(self, hl="en-US", tournament_id=None):
 
         # TODO It seems data before summer 2019 isn't available, need more investigation
 
@@ -182,7 +182,7 @@ class LoLEsportApi:
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default, "es-ES".
+                The language code in which the information will be requested. By default, "en-US".
 
             tournament_id: int (optional)
                 The tournament(s) ID(s) of which splits will be requested. If not provided all tournaments for
@@ -203,18 +203,18 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
-            return json.loads(response.text)['data']
+            return response.json()['data']
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_event_details(self, match_id, hl='es-ES'):
+    def get_event_details(self, match_id, hl="en-US"):
 
         """Get information about a match metadata like league, teams, vods and who stream the game.
 
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "es-ES".
+                The language code in which the information will be requested. By default "en-US".
 
             match_id: int,str
                 The match(s) ID(s) of which information will be requested.
@@ -235,11 +235,11 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
-            return json.loads(response.text)['data']
+            return response.json()['data']
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_games(self, hl='es-ES', match_id=None):
+    def get_games(self, hl="en-US", match_id=None):
 
         """Get information about a completed or unneeded match (id,number,state,vods).
             If match_id is not provided all games will be requested
@@ -247,7 +247,7 @@ class LoLEsportApi:
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "es-ES".
+                The language code in which the information will be requested. By default "en-US".
 
             match_id: str, int (optional)
                 The match_id(s) ID(s) of which information will be requested. If not provided all games for
@@ -270,11 +270,11 @@ class LoLEsportApi:
         try:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
-            return json.loads(response.text)['data']
+            return response.json()['data']
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_teams(self, hl='es-ES', team_identifier=None):
+    def get_teams(self, hl="en-US", team_identifier=None, only_active: bool = False):
 
         """Get information about a team a unneeded match (image,code,region,id,players,etc).
             If team_identifier is not provided all teams will be requested.
@@ -282,11 +282,14 @@ class LoLEsportApi:
             Parameters
             ----------
             hl : str
-                The language code in which the information will be requested. By default "es-ES".
+                The language code in which the information will be requested. By default "en-US".
 
             team_identifier: str, id (optional)
                 The team slug or id of which information will be requested.
                 If team_slug is not provided all teams will be requested.
+
+            only_active: bool (optional)
+                True will return only teams with players and active
 
             Returns
              -------
@@ -299,15 +302,94 @@ class LoLEsportApi:
                 'id': team_identifier
             }
         )
-
         try:
             log.debug(f"Response content: {response.text}")
             check_correct_response(response, live_stats_data=False)
-            return json.loads(response.text)['data']
+            if only_active:
+                teams = response.json()['data'].get("teams", None)
+                if teams:
+                    return {"teams": [team for team in teams if team["status"] == "active"]}
+            return response.json()['data']
         except (LoLEsportResponseError, LoLEsportStructureError):
             log.exception(f"Error on LoLEsport API response. Response: {response.text}")
 
-    def get_teams_for_tournament(self, tournament_id, hl='es-ES', simplify_data_mode: bool = False):
+    def get_window(self, game_id, valid_datetime=None):
+
+        """Get information about a game, game stats (drakes, barons, etc) and players stats.
+
+        Parameters
+        ----------
+        game_id : str
+            The game id of which information will be requested.
+        valid_datetime:
+            A valid window time.
+
+        Returns
+         -------
+        dict
+    """
+        if not valid_datetime:
+            valid_datetime = window_date()
+        response = self.session.get(
+            LIVE_STATS_API + f'/window/{game_id}',
+            params={
+                'startingTime': window_date()
+            }
+        )
+
+        try:
+            log.debug(f"Response content: {response.text}")
+            check_correct_response(response, live_stats_data=True)
+            if response.status_code == 204:
+                return None
+            else:
+                return response.json()
+        except (LoLEsportResponseError, LoLEsportStructureError):
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
+
+    def get_details(self, game_id, participant_ids=None, valid_datetime=None):
+
+        """Get information about a player(s) on a game.
+            Parameters
+            ----------
+
+            game_id : str
+                The game id of which information will be requested.
+
+            participant_ids : str, int, int[] (Optional)
+                The participant(s) id of which information will be requested.
+                Must be an int, string or list of int
+
+            Returns
+            -------
+            dict
+        """
+        if type(participant_ids) == list:
+            if all(isinstance(x, int) for x in participant_ids):
+                participant_ids = "_".join(participant_ids)
+            else:
+                pass
+                # TODO Error type not valid
+        if not valid_datetime:
+            valid_datetime = window_date()
+        response = self.session.get(
+            LIVE_STATS_API + f'/details/{game_id}',
+            params={
+                'startingTime': valid_datetime,
+                'participantIds': participant_ids
+            }
+        )
+        try:
+            log.debug(f"Response content: {response.text}")
+            check_correct_response(response, live_stats_data=True)
+            if response.status_code == 204:
+                return None
+            else:
+                return response.json()
+        except (LoLEsportResponseError, LoLEsportStructureError):
+            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
+
+    def get_teams_for_tournament(self, tournament_id, hl="en-US", simplify_data_mode: bool = False):
         """
         Retrieve the list of participating teams in a tournament.
         If simplify_data_mode is False, teams will be separated by the phase
@@ -316,7 +398,7 @@ class LoLEsportApi:
         Parameters
         ----------
         hl : str
-            The language code in which the information will be requested. By default "es-ES".
+            The language code in which the information will be requested. By default "en-US".
 
         tournament_id: str,int,int[] (Optional)
             The tournament(s) ID(s) of which splits will be requested.
@@ -420,7 +502,7 @@ class LoLEsportApi:
         else:
             return custom_stages
 
-    def get_players(self, hl='es-ES', team_identifier=None):
+    def get_players(self, hl="en-US", team_identifier=None):
 
         """Get players for a team (id,summonerName,firstName,lastName,image,rol).
         If team_identifier is not provided all players will be requested, adding to the previous
@@ -429,7 +511,7 @@ class LoLEsportApi:
             Parameters
             ----------
             hl : str
-              The language code in which the information will be requested. By default "es-ES".
+              The language code in which the information will be requested. By default "en-US".
 
             team_identifier: str, id (optional)
               The team slug or id of which information will be requested.
@@ -479,67 +561,174 @@ class LoLEsportApi:
 
         return players_dict
 
-    def get_window(self, game_id):
+    def get_live_games_info(self, only_ids: bool = False, hl="en-US"):
 
-        """Get information about a game, game stats (drakes, barons, etc) and players stats.
+        live_data = self.get_live(hl=hl)['schedule']['events']
 
-        Parameters
-        ----------
-        game_id : str
-            The game id of which information will be requested.
+        live_games_data = {'games': []}
 
-        Returns
-         -------
-        dict
-    """
-        response = self.session.get(
-            LIVE_STATS_API + f'/window/{game_id}',
-            params={
-                'startingTime': window_date()
+        # Processing matches in progress, discarding broadcasts without live games
+        for match in [match for match in live_data if match['state'] == "inProgress" and match['type'] == 'match']:
+
+            # Retrieve in progress game for the current iteration match
+            in_progress_game = None
+            for game in [game for game in match['match']['games'] if game['state'] == "inProgress"]:
+                in_progress_game = game
+
+            if not in_progress_game:
+                continue
+
+            # Retrieve previous completed games for the current iteration match
+            previous_games = [game for game in match['match']['games'] if game['state'] == 'completed']
+
+            # If there are completed games on the match, they are processed to retrieve their ID and game number.
+            completed_games = []
+            if previous_games:
+                for game in previous_games:
+                    game_data = {
+                        'id': game['id'],
+                        'number': game['number'],
+                    }
+
+                    completed_games.append(game_data)
+
+            # Initialization of the custom formatted dictionary
+            game_data_dict = {
+                'match_id': match['id'],
+                'game': {
+                    'id': in_progress_game['id'],
+                    'number': in_progress_game['number'],
+                },
+                'completedGames': completed_games,
+                'blockName': match['blockName'],
+                'type': match['match']['strategy']
             }
-        )
 
-        try:
-            log.debug(f"Response content: {response.text}")
-            check_correct_response(response, live_stats_data=True)
-            return json.loads(response.text)
-        except (LoLEsportResponseError, LoLEsportStructureError):
-            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
+            # Removing unneeded data from league and adding the remaining info to the custom dictionary
+            match['league'].pop('priority')
+            match['league'].pop('displayPriority')
 
-    def get_details(self, game_id, participant_ids=None):
+            game_data_dict['league'] = match['league']
 
-        """Get information about a player(s) on a game.
-            Parameters
-            ----------
+            # Adding the tournament info to the custom dictionary
+            # NOTE: We add this data now and not when initializing the custom dictionary so that the dictionary
+            # is tidier and easier to read at a glance.
+            game_data_dict['tournament'] = match['tournament']
 
-            game_id : str
-                The game id of which information will be requested.
+            # Add team side to each team match dictionary, an add the result on the custom dictionary
+            teams = []
+            for team in in_progress_game['teams']:
+                match_team_index = match['match']['teams'].index(next(filter(lambda n:
+                                                                             n.get('id') == team['id'],
+                                                                             match['match']['teams'])))
 
-            participant_ids : str, int, int[] (Optional)
-                The participant(s) id of which information will be requested.
-                Must be an int, string or list of int
+                match_team_dict = match['match']['teams'].pop(match_team_index)
 
-            Returns
-            -------
-            dict
-        """
-        if type(participant_ids) == list:
-            if all(isinstance(x, int) for x in participant_ids):
-                participant_ids = "_".join(participant_ids)
+                match_team_dict['side'] = team['side']
+
+                teams.append(match_team_dict)
+
+            game_data_dict['teams'] = teams
+
+            live_games_data['games'].append(game_data_dict)
+
+        if only_ids:
+            return {'games': [game_info['game']['id'] for game_info in live_games_data['games']]}
+        return live_games_data
+
+    def get_window_details(self, game_id: str):
+        valid_datetime = window_date()
+        window = self.get_window(game_id, valid_datetime)
+        details = self.get_details(game_id=game_id, valid_datetime=valid_datetime)
+
+        return window, details
+
+    @staticmethod
+    def get_merged_window_details_frames(window, details):
+
+        window['frames'] = unique_dicts(window['frames'], 'rfc460Timestamp')
+        details['frames'] = unique_dicts(details['frames'], 'rfc460Timestamp')
+
+        merged_window = {
+            'frames': []
+        }
+
+        for i, window_frame in enumerate(window['frames']):
+            players_details_frame = details['frames'][i]
+
+            new_frame_dict = {
+                'rfc460Timestamp': window_frame['rfc460Timestamp'],
+                'gameState': window_frame['gameState']
+            }
+
+            if players_details_frame['rfc460Timestamp'] != window_frame['rfc460Timestamp']:
+                log.warning(f"TimeStamp don't match.\r\n"
+                            f"Details: {players_details_frame['rfc460Timestamp']}\r\n"
+                            f"Window: {window_frame['rfc460Timestamp']}")
+
+                log.warning(f"Window {window}")
+                log.warning(f"Details {details}")
             else:
-                pass
-                # TODO Error type not valid
+                for player in [player for player in window_frame['blueTeam']['participants']]:
+                    [details_player] = list(filter(lambda n: n.get('participantId') == player['participantId'],
+                                                   players_details_frame['participants']))
 
-        response = self.session.get(
-            LIVE_STATS_API + f'/details/{game_id}',
-            params={
-                'startingTime': window_date(),
-                'participantIds': participant_ids
-            }
-        )
-        try:
-            log.debug(f"Response content: {response.text}")
-            check_correct_response(response, live_stats_data=True)
-            return json.loads(response.text)
-        except (LoLEsportResponseError, LoLEsportStructureError):
-            log.exception(f"Error on LoLEsport API response. Response: {response.text}")
+                    index_player = window_frame['blueTeam']['participants'].index(next(filter(lambda n:
+                                                                                              n.get('participantId') ==
+                                                                                              player['participantId'],
+                                                                                              window_frame['blueTeam'][
+                                                                                                  'participants'])))
+                    window_frame['blueTeam']['participants'].pop(index_player)
+                    window_frame['blueTeam']['participants'].append(details_player)
+
+                for player in [player for player in window_frame['redTeam']['participants']]:
+                    [details_player] = list(filter(lambda n: n.get('participantId') == player['participantId'],
+                                                   players_details_frame['participants']))
+
+                    index_player = window_frame['redTeam']['participants'].index(next(filter(lambda n:
+                                                                                             n.get('participantId') ==
+                                                                                             player['participantId'],
+                                                                                             window_frame['redTeam'][
+                                                                                                 'participants'])))
+                    window_frame['redTeam']['participants'].pop(index_player)
+                    window_frame['redTeam']['participants'].append(details_player)
+                new_frame_dict['blue'] = window_frame['blueTeam']
+                new_frame_dict['red'] = (window_frame['redTeam'])
+
+            merged_window['frames'].append(new_frame_dict)
+
+        return merged_window
+
+    def get_tournaments_league_related(self, hl="en-US", league_id=None, mode="ongoing"):
+        if not league_id:
+            leagues = self.get_leagues(hl=hl)
+            league_id = ",".join([league['id'] for league in leagues['leagues']])
+        data = {
+            'tournaments': []
+        }
+        today_date = datetime.datetime.utcnow().date()
+
+        tournaments = self.get_tournaments_for_league(hl=hl, league_id=league_id)['leagues']
+        for i, league in enumerate(leagues['leagues']):
+
+            league.pop('priority')
+            league.pop('displayPriority')
+
+            for tournament in tournaments[i]['tournaments']:
+
+                start_date = datetime.datetime.strptime(tournament['startDate'], '%Y-%m-%d').date()
+                end_date = datetime.datetime.strptime(tournament['endDate'], '%Y-%m-%d').date()
+
+                if mode == "ongoing" and not start_date <= today_date <= end_date:
+                    continue
+
+                if mode == "not_ended" and not today_date <= end_date:
+                    continue
+
+                tournament = {
+                    'league': {**league},
+                    **tournament
+                }
+                data['tournaments'].append(tournament)
+
+        return data
