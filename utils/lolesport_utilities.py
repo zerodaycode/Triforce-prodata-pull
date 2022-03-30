@@ -1,12 +1,12 @@
+import itertools
 import logging
-
+import datetime
 import requests
 
 from Exceptions.lolesportsapi_exceptions import LoLEsportResponseError, LoLEsportStructureError
 
-import datetime
-
 log = logging.getLogger(__name__)
+
 
 def get_valid_date() -> str:
     """
@@ -44,9 +44,13 @@ def check_correct_response(response: requests.Response, live_stats_data: bool):
     -------
 
     """
-    if response.status_code != 200:
+    if response.status_code != 200 and not (response.status_code == 204 and live_stats_data):
         raise LoLEsportResponseError(response.status_code)
-    if response.json().get('errors'):
+    if str(response.status_code)[0] == "4" and response.text and response.json().get('errors'):
         raise LoLEsportStructureError(errors_request=True)
-    if not live_stats_data and not response.json().get('data'):
+    if not live_stats_data and response.text and not response.json().get('data'):
         raise LoLEsportStructureError(errors_request=False)
+
+
+def unique_dicts(list_of_dicts: list, unique_key: str):
+    return [list(grp)[0] for _, grp in itertools.groupby(list_of_dicts, lambda d: d[unique_key])]
