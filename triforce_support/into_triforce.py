@@ -1,7 +1,11 @@
 import logging
+import subprocess
 from time import sleep
+import paramiko
+from datetime import datetime, timezone
 
 from utils.postgres_db import Database
+from secrets import ssh_host
 from lolesportapi import LoLEsportApi
 
 log = logging.getLogger(__name__)
@@ -202,8 +206,74 @@ class TriforceUpdater:
                                   ["team_id", "player_id"],
                                   rows_to_insert)
 
+    @staticmethod
+    def create_backup_db(remote_host: bool = True):
+
+        backup_name = "backup_triforce_" + datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ').replace(":","_")
+
+        command = f"pg_dump -F t triforce > backups/{backup_name}.tar"
+
+        if remote_host:
+            ssh = paramiko.SSHClient()
+
+            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+            ssh.connect(ssh_host["host"], ssh_host["port"], ssh_host["user"], ssh_host["password"],allow_agent=False)
+
+            stdin, stdout, stderr = ssh.exec_command(command)
+
+            lines = stdout.readlines()
+            ssh.close()
+            log.info(lines)
+
+        # TODO need test with database on localhost
+        else:
+            process = subprocess.Popen([command],
+                                       stdout=subprocess.PIPE,
+                                       stderr=subprocess.PIPE)
+            stdout, stderr = process.communicate()
+
+            log.info(stdout)
+
+        return backup_name
+
+    def truncate_triforce_tables(self):
+        self.database.query("TRUNCATE leagues, tournaments, teams, players, teams_players RESTART IDENTITY;")
+
+    @staticmethod
+    def restore_data_from_backup(backup_name: str, remote_host: bool = True):
+
+        command = f"pg_restore --data-only -d triforce < backups/{backup_name}"
+
+        if remote_host:
+            ssh = paramiko.SSHClient()
+
+            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+            ssh.connect(ssh_host["host"], ssh_host["port"], ssh_host["user"], ssh_host["password"],allow_agent=False)
+
+            stdin, stdout, stderr = ssh.exec_command(command)
+
+            lines = stdout.readlines()
+            ssh.close()
+            log.info(f"Output backup restore lines (ssh): {lines}")
+
+        # TODO need test with database on localhost
+        else:
+            process = subprocess.Popen([command],
+                                       stdout=subprocess.PIPE,
+                                       stderr=subprocess.PIPE)
+            stdout, stderr = process.communicate()
+
+            log.info(f"Output backup restore lines (local shell): {stdout}")
+
+        return backup_name
+
     def update_triforce(self, api: LoLEsportApi):
+        # TODO implement loop
         a = self.update_interval
+
+        db_backup_name = self.create_backup_db(remote_host=True)
 
         api_leagues_dict = api.get_leagues()
         sleep(1)
@@ -213,36 +283,52 @@ class TriforceUpdater:
         sleep(1)
         api_players_dict = api.get_players()
         sleep(1)
+
+        # Truncate all data on tables
+        self.truncate_triforce_tables()
+
         # Riot api leagues data to SQL insert query
         leagues_sql_formatted = self.leagues_to_sql(api_leagues_dict)
 
         # Inserting leagues on db and retrieve the rows inserted for future operations
-        self.update_leagues_table(leagues_sql_formatted)
+        try:
+            self.update_leagues_table(leagues_sql_formatted)
 
-        leagues_table_rows = self.get_leagues_table_rows()
+            leagues_table_rows = self.get_leagues_table_rows()
+        except:
+            self.restore_data_from_backup(backup_name=db_backup_name, remote_host=True)
 
         # Riot api tournaments data to SQL insert query
         tournaments_sql_formatted = self.tournaments_to_sql(api_tournaments_dict,
                                                             leagues_table_rows)
         # Inserting tournaments on db
-        self.update_tournaments_table(tournaments_sql_formatted)
+        try:
+            self.update_tournaments_table(tournaments_sql_formatted)
+        except:
+            self.restore_data_from_backup(backup_name=db_backup_name, remote_host=True)
 
         # Riot api teams data to SQL insert query
         teams_sql_formatted = self.teams_to_sql(api_teams_dict,
                                                 leagues_table_rows)
 
         # Inserting teams on db and retrieve the rows inserted for future operations
-        self.update_teams_table(teams_sql_formatted)
+        try:
+            self.update_teams_table(teams_sql_formatted)
 
-        teams_table_rows = self.get_teams_table_rows()
+            teams_table_rows = self.get_teams_table_rows()
+        except:
+            self.restore_data_from_backup(backup_name=db_backup_name, remote_host=True)
 
         # Riot api players data to SQL insert query
         players_sql_formatted = self.players_to_sql(api_players_dict)
 
         # Inserting teams on db and retrieve the rows inserted for future operations
-        self.update_players_table(players_sql_formatted)
+        try:
+            self.update_players_table(players_sql_formatted)
 
-        players_table_rows = self.get_players_table_rows()
+            players_table_rows = self.get_players_table_rows()
+        except:
+            self.restore_data_from_backup(backup_name=db_backup_name, remote_host=True)
 
         # Players-teams relation to SQL insert query
         players_team_relation_sql_formatted = self.teams_players_relation_to_sql(api_players_dict,
@@ -250,4 +336,7 @@ class TriforceUpdater:
                                                                                  teams_table_rows)
 
         # Inserting players-teams relation on db
-        self.update_teams_players_table(players_team_relation_sql_formatted)
+        try:
+            self.update_teams_players_table(players_team_relation_sql_formatted)
+        except:
+            self.restore_data_from_backup(backup_name=db_backup_name, remote_host=True)
