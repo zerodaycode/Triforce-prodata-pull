@@ -28,6 +28,7 @@ def create_backup_db(remote_host: bool = True):
     # TODO need test with database on localhost
     else:
         process = subprocess.Popen([command],
+                                   shell=True,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE)
         stdout, stderr = process.communicate()
@@ -56,6 +57,7 @@ def restore_data_from_backup(backup_name: str, remote_host: bool = True):
     # TODO need test with database on localhost
     else:
         process = subprocess.Popen([command],
+                                   shell=True,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE)
         stdout, stderr = process.communicate()
