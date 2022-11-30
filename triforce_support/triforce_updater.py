@@ -56,11 +56,12 @@ class TriforceUpdater:
                 "id": team[0],
                 "ext_id": team[1],
                 "slug": team[2],
-                "code": team[3],
-                "image_url": team[4],
-                "alt_image_url": team[5],
-                "bg_image_url": team[6],
-                "league_id": team[7]
+                "name": team[3],
+                "code": team[4],
+                "image_url": team[5],
+                "alt_image_url": team[6],
+                "bg_image_url": team[7],
+                "league_id": team[8]
             }
             teams_database_rows_dict.append(team_dict)
 
@@ -93,8 +94,16 @@ class TriforceUpdater:
                                   ["team_id", "player_id"],
                                   rows_to_insert)
 
+    def update_schedule_table(self, rows_to_insert):
+        self.database.insert_rows("schedule",
+                                  ["start_time", "state", "event_type", "blockname", "league_id",
+                                   "match_id", "stategy", "strategy_count",
+                                   "team_left_id", "team_left_wins",
+                                   "team_right_id", "team_right_wins"],
+                                  rows_to_insert)
+
     def truncate_triforce_tables(self):
-        self.database.query("TRUNCATE league, tournament, team, player, team_player RESTART IDENTITY;")
+        self.database.query("TRUNCATE league, tournament, team, player, team_player, schedule RESTART IDENTITY;")
 
     def update_triforce(self, api: LoLEsportApi):
 
@@ -108,6 +117,8 @@ class TriforceUpdater:
         api_teams_dict = api.get_teams(only_active=True)
 
         api_players_dict = api.get_players()
+
+        api_schedule_dict = api.get_schedule()
 
         # Truncate all data on tables
         self.truncate_triforce_tables()
@@ -166,7 +177,18 @@ class TriforceUpdater:
 
         # Inserting players-teams relation on db
         try:
-            self.update_teams_players_table(players_team_relation_sql_formatted)
+            self.update_schedule_table(players_team_relation_sql_formatted)
+        except:
+            if self.enable_backup:
+                triforce_utils.restore_data_from_backup(backup_name=db_backup_name, remote_host=self.db_is_remote)
+
+        # Schedule to SQL insert query
+        schedule_sql_formatted = triforce_utils.schedule_to_sql(api_schedule_dict,
+                                                                leagues_table_rows,
+                                                                teams_table_rows)
+        # Inserting schedule
+        try:
+            self.update_schedule_table(schedule_sql_formatted)
         except:
             if self.enable_backup:
                 triforce_utils.restore_data_from_backup(backup_name=db_backup_name, remote_host=self.db_is_remote)

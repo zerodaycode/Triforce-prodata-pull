@@ -173,3 +173,54 @@ def teams_players_relation_to_sql(players_json, players_sql, teams_sql):
             teams_players_relation_sql_formatted.append(values)
 
     return teams_players_relation_sql_formatted
+
+
+def schedule_to_sql(schedule_json, leagues_sql, teams_sql):
+    schedule_sql_formatted = []
+
+    for event in [match for match in schedule_json['events'] if
+                  match['type'] == "match"]:
+
+        # Retrieve related league
+        league_dict = next((league for league in leagues_sql
+                            if league["slug"] == event["league"]["slug"]), None)
+        if not league_dict:
+            league_dict = {}
+            log.warning(f"Didnt find the league on db for slug {event['league']['slug']}")
+
+        team_1_dict = next((team for team in teams_sql
+                            if (team["code"] == event["match"]["teams"][0]["code"]
+                                and team["name"] == event["match"]["teams"][0]["name"]))
+                           , None)
+        if not team_1_dict:
+            team_1_dict = {}
+
+        team_2_dict = next((team for team in teams_sql
+                            if (team["code"] == event["match"]["teams"][1]["code"]
+                                and team["name"] == event["match"]["teams"][1]["name"]))
+                           , None)
+        if not team_2_dict:
+            team_2_dict = {}
+
+        # FIXME preparar para eventos que no sean partidos
+        event_starttime = event['startTime']
+        event_state = event['state']
+        event_type = event['type']  # Implementado por si en un futuro se quieren procesar otro tipo de eventos
+        event_blockname = event['blockName']
+        event_league_id = league_dict.get("id", None)
+        event_match_id = event['match']['id']
+        event_match_strategy = event['match']['strategy']['type']
+        event_match_strategy_count = event['match']['strategy']['count']
+        event_team_left = team_1_dict.get("id", None)
+        event_team_left_score = event['match']['teams'][0]['result']['gameWins']
+        event_team_right = team_2_dict.get("id", None)
+        event_team_right_score = event['match']['teams'][1]['result']['gameWins']
+
+        values = [event_starttime, event_state, event_type, event_blockname, event_league_id,
+                  event_match_id, event_match_strategy, event_match_strategy_count,
+                  event_team_left, event_team_left_score,
+                  event_team_right, event_team_right_score]
+
+        schedule_sql_formatted.append(values)
+
+    return schedule_sql_formatted

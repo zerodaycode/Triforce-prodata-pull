@@ -12,7 +12,7 @@ class LoLEsportResponseError(Exception):
 
 class LoLEsportStructureError(Exception):
 
-    def __init__(self,errors_request: bool):
+    def __init__(self, errors_request: bool):
         message = "The structure of the response isn't valid."
 
         if errors_request:
