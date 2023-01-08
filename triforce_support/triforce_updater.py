@@ -177,7 +177,7 @@ class TriforceUpdater:
 
         # Inserting players-teams relation on db
         try:
-            self.update_schedule_table(players_team_relation_sql_formatted)
+            self.update_teams_players_table(players_team_relation_sql_formatted)
         except:
             if self.enable_backup:
                 triforce_utils.restore_data_from_backup(backup_name=db_backup_name, remote_host=self.db_is_remote)
